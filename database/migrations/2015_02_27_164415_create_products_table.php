@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration {
 		Schema::create('products', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->unsignedInteger('store_id')->index();
+            $table->unsignedInteger('shop_id')->index();
             $table->unsignedInteger('category_id')->nullable();
             $table->string('name',32);
             $table->string('slug');
@@ -24,9 +24,9 @@ class CreateProductsTable extends Migration {
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('store_id')
+            $table->foreign('shop_id')
                 ->references('id')
-                ->on('stores')
+                ->on('shops')
                 ->onDelete('cascade');
 
 		});
