@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -30,5 +30,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
+
+
+    public function shop()
+    {
+        return $this->hasOne('App\Models\Shop');
+    }
+
+    public function hasShop()
+    {
+        if ($this->shop()->first() == null) {
+            return false;
+        }else
+            return true;
+    }
 
 }
