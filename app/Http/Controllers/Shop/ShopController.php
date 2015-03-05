@@ -5,16 +5,21 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\ShopRequest;
 use App\Models\Shop;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Guard;
 
 class ShopController extends Controller {
+
+
+    protected $auth;
 
     /**
      * Create a new ShopController instance
      * and set middleware
      */
-    function __construct()
+    function __construct(Guard $auth)
     {
+        $this->auth = $auth;
+
         $this->middleware('auth', ['only' => ['create','edit','update', 'store']]);
         $this->middleware('shop', ['only' => ['create','edit','update', 'store']]);
     }
@@ -52,7 +57,7 @@ class ShopController extends Controller {
         $name = $request->get('name');
         $slug = str_replace(' ', '-', $name);
         $request['slug'] = $slug;
-        return $shop = Auth::user()->shop()->create($request->all());
+        return $shop = $this->auth->user()->shop()->create($request->all());
     }
 
     /**

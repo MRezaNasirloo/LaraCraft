@@ -1,9 +1,8 @@
 <?php namespace App\Models;
 
-use App\Laracraft\SlugRoutes\SluggableInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class Shop extends Model implements SluggableInterface{
+class Shop extends Model {
 
 	protected $table = 'shops';
 
@@ -18,18 +17,7 @@ class Shop extends Model implements SluggableInterface{
 
     public function user()
     {
-        $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 
-
-    /**
-     * Returns the name of the database column, which should be used to search
-     * for a record. The column should be URL friendly and unique to avoid collisions.
-     *
-     * @return string
-     */
-    public function getSlugIdentifier()
-    {
-        return 'slug';
-    }
 }
