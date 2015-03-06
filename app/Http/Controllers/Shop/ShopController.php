@@ -32,7 +32,16 @@ class ShopController extends Controller {
      */
     public function index()
     {
-        $shops = Shop::latest()->get();
+        if(isset($_GET['order'])) {//TODO: refactor this shit :/
+            $order = $_GET['order'];
+            if ($order === 'most_recent') {
+                $shops = Shop::with('user')->latest()->get();
+            } else {
+                $shops = Shop::with('user')->get();
+            }
+        }else{
+            $shops = Shop::with('user')->get();
+        }
         return view('shop.index', compact('shops'));
     }
 

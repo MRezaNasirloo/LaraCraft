@@ -1,8 +1,9 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Psy\Test\CodeCleaner\AssignThisVariablePassTest;
 
-class Shop extends Model {
+class Shop extends BaseModel {
 
 	protected $table = 'shops';
 
@@ -14,10 +15,24 @@ class Shop extends Model {
         'description'
     ];
 
-
+    /**
+     * Returns the User who has owned this Shop
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo($this->namespaceModels . '\User');
+    }
+
+    /**
+     * Return the products which associated to this Shop
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products()
+    {
+        return $this->hasMany($this->namespaceProduct . '\Product');
     }
 
 }
