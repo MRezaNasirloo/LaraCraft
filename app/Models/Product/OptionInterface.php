@@ -33,6 +33,13 @@ interface OptionInterface {
      *
      * @return HasMany
      */
+    public function product();
+
+    /**
+     * Returns associated OptionValue to this Option
+     *
+     * @return HasMany
+     */
     public function values();
 
     /**
@@ -47,7 +54,7 @@ interface OptionInterface {
      *
      * @param OptionValueInterface $value
      */
-    public function addValues(OptionValueInterface $value);
+    public function addValues($value);
 
     /**
      * Removes option value.

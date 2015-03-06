@@ -37,7 +37,7 @@ class Product extends BaseModel implements ProductInterface {
      */
     public function options()
     {
-        return $this->belongsToMany($this->namespaceProduct . '\Option', 'product_option');
+        return $this->hasMany($this->namespaceProduct . '\Option');
     }
 
     /**
@@ -45,7 +45,7 @@ class Product extends BaseModel implements ProductInterface {
      */
     public function addOption(OptionInterface $option)
     {
-        $this->options()->attach($option);
+        $this->options()->save($option);
     }
 
 
@@ -66,4 +66,13 @@ class Product extends BaseModel implements ProductInterface {
         //return $this;
     }
 
+    /**
+     * Returns the Variations associated to this {@link App\Models\Product\Product}
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function variations()
+    {
+        return $this->hasMany($this->namespaceProduct . '\Variation');
+    }
 }

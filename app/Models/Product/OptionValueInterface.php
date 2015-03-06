@@ -9,6 +9,8 @@
 namespace app\Models\Product;
 
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 interface OptionValueInterface {
 
     /**
@@ -29,8 +31,15 @@ interface OptionValueInterface {
     /**
      * Returns the Option associated with this OptionValue
      *
-     * @return Option
+     * @return HasOne | Option
      */
     public function option();
+
+    /**
+     * Returns the Option associated with this OptionValue
+     *
+     * @return HasOne | Variation
+     */
+    public function variation();
 
 }

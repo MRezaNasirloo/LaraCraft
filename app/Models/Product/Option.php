@@ -39,19 +39,27 @@ class Option extends BaseModel implements OptionInterface{
     }
 
     /**
+     * Returns associated Product to this Option
+     *
+     * @return HasMany
+     */
+    public function product()
+    {
+        return $this->belongsTo($this->namespaceProduct . '\Product');
+    }
+
+    /**
      * Returns associated OptionValue to this Option
      *
      * @return HasMany
      */
     public function values()
     {
-        return $this->hasMany($this->namespaceProduct . '\OptionValue');
+        return $this->hasMany($this->namespaceProduct . '\Value');
     }
 
     /**
-     * Adds an OptionValue for an Option
-     *
-     * @param OptionValueInterface $value
+     * {@inheritdoc}
      */
     public function addValue(OptionValueInterface $value)
     {
@@ -60,11 +68,9 @@ class Option extends BaseModel implements OptionInterface{
     }
 
     /**
-     * Adds many OptionValue for an Option
-     *
-     * @param OptionValueInterface $value
+     * {@inheritdoc}
      */
-    public function addValues(OptionValueInterface $value)//TODO: how exactly?
+    public function addValues($value)//TODO: how exactly?
     {
         $this->values()->saveMany($value);
         //return $this;

@@ -46,14 +46,14 @@ interface VariationInterface {
      *
      * @return HasMany
      */
-    public function optionValues();
+    public function values();
 
     /**
      * Return the OptionValues associated with this Variation
      *
      * @return
      */
-    public function options();
+    //public function options();
 
     /**
      * Adds a Value associated with this Variation and Option
@@ -69,6 +69,6 @@ interface VariationInterface {
      * @param String $value
      * @internal param OptionValueInterface $optionValue
      */
-    public function addOption(OptionInterface $option, $value);
+    //public function addOption(OptionInterface $option, $value);
 
 }

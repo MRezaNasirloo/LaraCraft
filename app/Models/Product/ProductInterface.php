@@ -36,11 +36,18 @@ interface ProductInterface {
     public function shop();
 
     /**
-     * Returns the Options associated to a {@link App\Models\Product\Product}
+     * Returns the Options associated to this {@link App\Models\Product\Product}
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function options();
+
+    /**
+     * Returns the Variations associated to this {@link App\Models\Product\Product}
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function variations();
 
     /**
      * Associate an Option to this {@link App\Models\Product\Product}

@@ -52,9 +52,9 @@ class Variation extends BaseModel implements VariationInterface {
      *
      * @return HasMany
      */
-    public function optionValues()
+    public function values()
     {
-        return $this->hasMany($this->namespaceroduct . '\OptionValue');
+        return $this->belongsToMany($this->namespaceProduct . '\OptionValue', 'variation_option_value', 'variation_id', 'value_id')->withTimestamps();
     }
 
     /**
@@ -64,8 +64,8 @@ class Variation extends BaseModel implements VariationInterface {
      */
     public function addOptionValue(OptionValueInterface $optionValue)
     {
-        $this->optionValues()->save($optionValue);
-        return $this;
+        $this->values()->attach($optionValue);
+        //return $this;
     }
 
     /**
@@ -73,19 +73,24 @@ class Variation extends BaseModel implements VariationInterface {
      *
      * @param OptionValueInterface $optionValue
      */
-    public function addOption(OptionInterface $option, $value)
+    /*public function addOption(OptionInterface $option, $value)
     {
        // $this->optionValues()->option()->save($option);
         $this->options()->attach($option, ['value'  =>  $value]);
-    }
+    }*/
 
     /**
      * Return the Options associated with this Variation
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function options()
+    /*public function options()
     {
         return $this->belongsToMany($this->namespaceProduct . '\Option','option_value')->withPivot('value')->withTimestamps();
-    }
+    }*/
+    /**
+     * Return the OptionValues associated with this Variation
+     *
+     * @return HasMany
+     */
 }

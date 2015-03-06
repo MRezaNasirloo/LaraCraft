@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOptionsTable extends Migration {
+class CreateValuesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,19 +12,19 @@ class CreateOptionsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('options', function(Blueprint $table)
+		Schema::create('values', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->unsignedInteger('product_id')->index();
-            $table->string('name', 32);
-            $table->timestamps();
+            $table->unsignedInteger('option_id')->index();
+            $table->string('value', 64);
+			$table->timestamps();
+
             $table->softDeletes();
 
-            $table->foreign('product_id')
+            $table->foreign('option_id')
                 ->references('id')
-                ->on('products')
+                ->on('options')
                 ->onDelete('cascade');
-
 		});
 	}
 
@@ -35,7 +35,7 @@ class CreateOptionsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('options');
+		Schema::drop('values');
 	}
 
 }

@@ -10,7 +10,7 @@ class OptionValue extends BaseModel implements OptionValueInterface{
      *
      * @var string
      */
-    protected $table = 'option_value';
+    protected $table = 'values';
 
     /**
      * The attributes that are mass assignable.
@@ -39,9 +39,7 @@ class OptionValue extends BaseModel implements OptionValueInterface{
 
 
     /**
-     * Returns the Option associated with this OptionValue
-     *
-     * @return HasOne | Option
+     * {@inheritdoc}
      */
     public function option()
     {
@@ -49,12 +47,10 @@ class OptionValue extends BaseModel implements OptionValueInterface{
     }
 
     /**
-     * Returns the Option associated with this OptionValue
-     *
-     * @return HasOne | Option
+     * {@inheritdoc}
      */
     public function variation()
     {
-        return $this->belongsTo($this->namespaceProduct . '\Variation');
+        return $this->belongsToMany($this->namespaceProduct . '\Variation', 'variation_option_value', 'value_id', 'variation_id')->withTimestamps();
     }
 }

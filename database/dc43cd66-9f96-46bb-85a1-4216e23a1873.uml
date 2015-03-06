@@ -3,20 +3,24 @@
   <ID>DATABASE</ID>
   <OriginalElement>dc43cd66-9f96-46bb-85a1-4216e23a1873</OriginalElement>
   <nodes>
-    <node x="1057.2889247943597" y="1031.0370152761457">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:product_option</node>
-    <node x="910.4779670975321" y="413.400705052879">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:products</node>
-    <node x="224.25" y="306.0">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:shops</node>
-    <node x="893.625" y="0.0">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:migrations</node>
-    <node x="244.25" y="0.0">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:users</node>
-    <node x="248.37529377203305" y="1071.6098707403057">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:option_value</node>
-    <node x="-29.171562867215073" y="586.807285546416">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variations</node>
-    <node x="1126.625" y="0.0">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:sqlite_sequence</node>
-    <node x="705.1257344300823" y="903.6304347826086">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:options</node>
-    <node x="677.625" y="0.0">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:password_resets</node>
+    <node x="-520.4827373612824" y="378.9704069050555">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:products</node>
+    <node x="-515.2422934648581" y="25.249075215782966">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:shops</node>
+    <node x="106.36066584463617" y="45.2157829839704">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:users</node>
+    <node x="-276.8618988902588" y="1156.5721331689272">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:migrations</node>
+    <node x="-509.7694204685572" y="794.6288532675709">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variations</node>
+    <node x="-43.86189889025877" y="1156.5721331689272">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:sqlite_sequence</node>
+    <node x="166.58446362515417" y="449.62392108508016">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:options</node>
+    <node x="-492.8618988902588" y="1156.5721331689272">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:password_resets</node>
+    <node x="176.10357583230586" y="793.7003699136869">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:values</node>
+    <node x="-183.57336621454988" y="828.3427866831073">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variation_option_value</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:option_value" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variations">
+    <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variation_option_value" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variations">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:values" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:options">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
@@ -24,19 +28,15 @@
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:product_option" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:products">
+    <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:options" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:products">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:product_option" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:options">
+    <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variation_option_value" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:values">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
     <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:shops" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:users">
-      <point x="0.0" y="0.0" />
-      <point x="0.0" y="0.0" />
-    </edge>
-    <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:option_value" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:options">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
@@ -45,9 +45,9 @@
       <point x="0.0" y="0.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.5141993957703928" x="641.0" y="817.5" />
+  <settings layout="Hierarchic Group" zoom="0.4202072538860104" x="581.5" y="955.0" />
   <SelectedNodes>
-    <node>dc43cd66-9f96-46bb-85a1-4216e23a1873.table:products</node>
+    <node>dc43cd66-9f96-46bb-85a1-4216e23a1873.table:options</node>
   </SelectedNodes>
   <Categories>
     <Category>Key columns</Category>
