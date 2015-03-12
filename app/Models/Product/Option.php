@@ -3,7 +3,7 @@
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Option extends BaseModel implements OptionInterface{
+class Option extends BaseModel implements OptionInterface {
 
     /**
      * The database table used by the model.
@@ -35,7 +35,6 @@ class Option extends BaseModel implements OptionInterface{
     public function setName($name)
     {
         $this->name = $name;
-        //return $this;
     }
 
     /**
@@ -55,7 +54,7 @@ class Option extends BaseModel implements OptionInterface{
      */
     public function values()
     {
-        return $this->hasMany($this->namespaceProduct . '\Value');
+        return $this->hasMany($this->namespaceProduct . '\OptionValue');
     }
 
     /**
@@ -64,16 +63,14 @@ class Option extends BaseModel implements OptionInterface{
     public function addValue(OptionValueInterface $value)
     {
         $this->values()->save($value);
-        //return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function addValues($value)//TODO: how exactly?
+    public function addValues($values)//TODO: how exactly?
     {
-        $this->values()->saveMany($value);
-        //return $this;
+        $this->values()->saveMany($values);
     }
 
     /**
@@ -82,7 +79,6 @@ class Option extends BaseModel implements OptionInterface{
     public function removeValue(OptionValueInterface $value)
     {
         $value->delete();
-        //return $this;
     }
 
     /**
@@ -94,8 +90,6 @@ class Option extends BaseModel implements OptionInterface{
         {
             $value->delete();
         }
-
-        //return $this;
     }
 
     /**

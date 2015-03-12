@@ -1,8 +1,12 @@
 <?php namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase;
+use Laracasts\TestDummy\Factory;
 
 class DBTestCase extends TestCase {
+
+    protected $namespaceModels = 'App\Models';
+    protected $namespaceProduct = 'App\Models\Product';
 
 	/**
 	 * Creates the application.
@@ -11,7 +15,7 @@ class DBTestCase extends TestCase {
 	 */
 	public function createApplication()
 	{
-		$app = require __DIR__.'/../bootstrap/app.php';
+		$app = require __DIR__ . '/../../bootstrap/app.php';
 
 		$app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
 
@@ -27,7 +31,7 @@ class DBTestCase extends TestCase {
     {
         parent::setUp();
 
-//        Factory::$factoriesPath = __DIR__.'/factories';
+        Factory::$factoriesPath = __DIR__.'/../factories';
 
 //        $this->registerServiceProviders();
 
@@ -74,7 +78,7 @@ class DBTestCase extends TestCase {
      */
     public function getMigrationsDirectory()
     {
-        return __DIR__ . '/../database/migrations';
+        return __DIR__ . '/../../database/migrations';
     }
 
 }

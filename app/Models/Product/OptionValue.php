@@ -18,7 +18,8 @@ class OptionValue extends BaseModel implements OptionValueInterface{
      * @var array
      */
     protected $fillable = [
-        'value'
+        'value',
+        'option_id'
     ];
 
     /**
