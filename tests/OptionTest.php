@@ -1,13 +1,11 @@
-<?php
+<?php namespace Tests;
+
 /**
  * Created by PhpStorm.
  * User: Mamareza
  * Date: 2015-03-07
  * Time: 7:57 PM
  */
-
-namespace tests;
-
 
 use App\Models\Product\Option;
 use App\Models\Product\OptionValue;
@@ -30,21 +28,23 @@ class OptionTest extends DBTestCase {
     public function its_product_method_should_return_a_product()
     {
         $option = Factory::create('Option');
+        $product = Factory::create('Product');
+        $product->addOption($option);
         $product= $option->product()->first();
-        $this->assertInstanceOf($this->namespaceProduct . '\ProductInterface', $product);
-        $this->assertEquals($option->product_id, $product->id);
+        $this->assertInstanceOf($this->namespaceProduct . '\IProduct', $product);
     }
 
     /** @test */
     public function its_values_method_should_return_option_value()
     {
         $option = Factory::create('Option');
-        $optionValue = new OptionValue(['option_id' => $option->id, 'value' => 'Yellow']);
+        $optionValue = new OptionValue(['option_id' => $option->id, 'value' => 'Yellow', 'by_admin' => false]);
+
         $optionValue->save();
 
         $opVal= $option->values()->first();
 
-        $this->assertInstanceOf($this->namespaceProduct . '\OptionValueInterface', $opVal);
+        $this->assertInstanceOf($this->namespaceProduct . '\IOptionValue', $opVal);
         $this->assertEquals($option->id, $opVal->option_id);
     }
 
@@ -52,12 +52,12 @@ class OptionTest extends DBTestCase {
     public function its_add_value_method_should_add_an_option_value()
     {
         $option = Factory::create('Option');
-        $optionValue = new OptionValue(['value' => 'Yellow']);
+        $optionValue = new OptionValue(['value' => 'Yellow', 'by_admin' => false]);
         $option->addValue($optionValue);
 
         $opVal= $option->values()->first();
 
-        $this->assertInstanceOf($this->namespaceProduct . '\OptionValueInterface', $opVal);
+        $this->assertInstanceOf($this->namespaceProduct . '\IOptionValue', $opVal);
         $this->assertEquals($option->id, $opVal->option_id);
     }
 
@@ -66,26 +66,25 @@ class OptionTest extends DBTestCase {
     {
         $option = Factory::create('Option');
         $optionValue = [
-            new OptionValue(['value' => 'Yellow']),
-            new OptionValue(['value' => 'Red']),
-            new OptionValue(['value' => 'Blue']),
-            new OptionValue(['value' => 'Orange']),
-            new OptionValue(['value' => 'Black']),
-            new OptionValue(['value' => 'White']),
-            new OptionValue(['value' => 'Pink'])
+            new OptionValue(['value' => 'Yellow',   'by_admin'  => false]),
+            new OptionValue(['value' => 'Red',      'by_admin'  => true]),
+            new OptionValue(['value' => 'Blue',     'by_admin'  => false]),
+            new OptionValue(['value' => 'Orange',   'by_admin'  => false]),
+            new OptionValue(['value' => 'Black',    'by_admin'  => true]),
+            new OptionValue(['value' => 'White',    'by_admin'  => true]),
+            new OptionValue(['value' => 'Pink',     'by_admin'  => false])
         ];
         $option->addValues($optionValue);
 
         $optionValues = $option->values()->get();
-        $values = [];
-        foreach($optionValues as $optionValue ){
-            $values[] = $optionValue;
-        }
-//        var_dump($values);
-        $this->assertContainsOnlyInstancesOf($this->namespaceProduct . '\OptionValueInterface', $values);
+        $values = $this->collectionToArray($optionValues);
+
+        $this->assertNotEmpty($values);
+        $this->assertContainsOnlyInstancesOf($this->namespaceProduct . '\IOptionValue', $values);
 
         $optionValue = $option->values()->first();
-        $this->assertInstanceOf($this->namespaceProduct . '\OptionValueInterface', $optionValue);
+        $this->assertNotEmpty($optionValue);
+        $this->assertInstanceOf($this->namespaceProduct . '\IOptionValue', $optionValue);
         $this->assertEquals($option->id, $optionValue->option_id);
     }
 
@@ -93,12 +92,12 @@ class OptionTest extends DBTestCase {
     public function its_remove_value_method_should_remove_an_option_value()
     {
         $option = Factory::create('Option');
-        $optionValue = new OptionValue(['value' => 'Yellow']);
+        $optionValue = new OptionValue(['value' => 'Yellow', 'by_admin' => false]);
         $option->addValue($optionValue);
 
         $opVal= $option->values()->first();
 
-        $this->assertInstanceOf($this->namespaceProduct . '\OptionValueInterface', $opVal);
+        $this->assertInstanceOf($this->namespaceProduct . '\IOptionValue', $opVal);
         $this->assertEquals($option->id, $opVal->option_id);
 
         $option->removeValue($optionValue);
@@ -110,26 +109,25 @@ class OptionTest extends DBTestCase {
     {
         $option = Factory::create('Option');
         $optionValue = [
-            new OptionValue(['value' => 'Yellow']),
-            new OptionValue(['value' => 'Red']),
-            new OptionValue(['value' => 'Blue']),
-            new OptionValue(['value' => 'Orange']),
-            new OptionValue(['value' => 'Black']),
-            new OptionValue(['value' => 'White']),
-            new OptionValue(['value' => 'Pink'])
+            new OptionValue(['value' => 'Yellow',   'by_admin'  => false]),
+            new OptionValue(['value' => 'Red',      'by_admin'  => true]),
+            new OptionValue(['value' => 'Blue',     'by_admin'  => false]),
+            new OptionValue(['value' => 'Orange',   'by_admin'  => false]),
+            new OptionValue(['value' => 'Black',    'by_admin'  => true]),
+            new OptionValue(['value' => 'White',    'by_admin'  => true]),
+            new OptionValue(['value' => 'Pink',     'by_admin'  => false])
         ];
         $option->addValues($optionValue);
 
         $optionValues = $option->values()->get();
-        $values = [];
-        foreach($optionValues as $optionValue ){
-            $values[] = $optionValue;
-        }
-//        var_dump($values);
-        $this->assertContainsOnlyInstancesOf($this->namespaceProduct . '\OptionValueInterface', $values);
+
+        $values = $this->collectionToArray($optionValues);
+        $this->assertNotEmpty($values);
+        $this->assertContainsOnlyInstancesOf($this->namespaceProduct . '\IOptionValue', $values);
 
         $optionValue = $option->values()->first();
-        $this->assertInstanceOf($this->namespaceProduct . '\OptionValueInterface', $optionValue);
+        $this->assertNotEmpty($optionValue);
+        $this->assertInstanceOf($this->namespaceProduct . '\IOptionValue', $optionValue);
         $this->assertEquals($option->id, $optionValue->option_id);
 
         $option->removeAllValues($optionValue);

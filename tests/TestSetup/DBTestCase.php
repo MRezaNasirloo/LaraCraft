@@ -1,6 +1,8 @@
 <?php namespace Tests;
 
+use App\Exceptions\InvalidArgumentException;
 use Illuminate\Foundation\Testing\TestCase;
+use Illuminate\Support\Collection;
 use Laracasts\TestDummy\Factory;
 
 class DBTestCase extends TestCase {
@@ -79,6 +81,16 @@ class DBTestCase extends TestCase {
     public function getMigrationsDirectory()
     {
         return __DIR__ . '/../../database/migrations';
+    }
+
+    protected function collectionToArray(Collection $collection){
+        if(!$collection instanceof Collection)
+            throw new InvalidArgumentException("The argument must be a an instance of Collection class.");
+        $array = [];
+        foreach ($collection as $element) {
+            $array[] = $element;
+        }
+        return $array;
     }
 
 }

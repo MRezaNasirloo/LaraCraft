@@ -1,13 +1,11 @@
-<?php
+<?php namespace Tests;
+
 /**
  * Created by PhpStorm.
  * User: Mamareza
  * Date: 2015-03-07
  * Time: 1:02 PM
  */
-
-namespace Tests;
-
 
 use Illuminate\Support\Facades\DB;
 use Laracasts\TestDummy\Factory;
