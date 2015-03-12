@@ -3,7 +3,7 @@
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Product extends BaseModel implements ProductInterface {
+class Product extends BaseModel implements IProduct {
 
     /**
      * The database table used by the model.
@@ -37,15 +37,15 @@ class Product extends BaseModel implements ProductInterface {
      */
     public function options()
     {
-        return $this->hasMany($this->namespaceProduct . '\Option');
+        return $this->belongsToMany($this->namespaceProduct . '\Option');
     }
 
     /**
      * {@inheritdoc}
      */
-    public function addOption(OptionInterface $option)
+    public function addOption(IOption $option)
     {
-        $this->options()->save($option);
+        $this->options()->save($option);//TODO: Attach associate or save?
     }
 
 
@@ -63,7 +63,6 @@ class Product extends BaseModel implements ProductInterface {
     public function setName($name)
     {
         $this->name = $name;
-        //return $this;
     }
 
     /**

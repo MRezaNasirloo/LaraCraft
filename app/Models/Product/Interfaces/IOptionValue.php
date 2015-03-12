@@ -11,7 +11,7 @@ namespace app\Models\Product;
 
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-interface OptionValueInterface {
+interface IOptionValue {
 
     /**
      * Get Option Value

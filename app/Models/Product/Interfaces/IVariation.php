@@ -11,7 +11,7 @@ namespace app\Models\Product;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-interface VariationInterface {
+interface IVariation {
 
     /**
      * Gets the price of this Variation
@@ -49,6 +49,13 @@ interface VariationInterface {
     public function values();
 
     /**
+     * Return the ProductOptionValues associated with this Variation
+     *
+     * @return HasMany
+     */
+    public function productOptionValues();
+
+    /**
      * Return the OptionValues associated with this Variation
      *
      * @return
@@ -58,17 +65,17 @@ interface VariationInterface {
     /**
      * Adds a Value associated with this Variation and Option
      *
-     * @param OptionValueInterface $optionValue
+     * @param IOptionValue $optionValue
      */
-    public function addOptionValue(OptionValueInterface $optionValue);
+    public function addOptionValue(IOptionValue $optionValue);
 
     /**
      * Adds an Option associated with this Variation
      *
-     * @param OptionInterface $option
+     * @param IOption $option
      * @param String $value
      * @internal param OptionValueInterface $optionValue
      */
-    //public function addOption(OptionInterface $option, $value);
+    //public function addOption(IOption $option, $value);
 
 }

@@ -3,7 +3,7 @@
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class OptionValue extends BaseModel implements OptionValueInterface{
+class OptionValue extends BaseModel implements IOptionValue{
 
     /**
      * The database table used by the model.

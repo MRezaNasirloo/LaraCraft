@@ -11,7 +11,7 @@ namespace app\Models\Product;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-interface OptionInterface {
+interface IOption {
 
     /**
      * Get Option name
@@ -45,23 +45,24 @@ interface OptionInterface {
     /**
      * Adds an OptionValue for an Option
      *
-     * @param OptionValueInterface $value
+     * @param IOptionValue $value
+     * @return
      */
-    public function addValue(OptionValueInterface $value);
+    public function addValue(IOptionValue $value);
 
     /**
      * Adds many OptionValue for an Option
      *
-     * @param OptionValueInterface $value
+     * @param IOptionValue[] $value
      */
     public function addValues($value);
 
     /**
      * Removes option value.
      *
-     * @param OptionValueInterface $optionValue
+     * @param IOptionValue $optionValue
      */
-    public function removeValue(OptionValueInterface $value);
+    public function removeValue(IOptionValue $value);
 
     /**
      * Removes all option values.
@@ -72,11 +73,11 @@ interface OptionInterface {
     /**
      * Checks whether option has given value.
      *
-     * @param OptionValueInterface $optionValue
+     * @param IOptionValue $optionValue
      *
      * @return Boolean
      */
-    //public function hasValue(OptionValueInterface $value);
+    //public function hasValue(IOptionValue $value);
 
     /**
      * @return mixed

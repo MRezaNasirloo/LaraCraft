@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVariationOptionValueTable extends Migration {
+class CreateVariationProductOptionValueTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,25 +12,24 @@ class CreateVariationOptionValueTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('variation_option_value', function(Blueprint $table)
+		Schema::create('variation_product_option_value', function(Blueprint $table)
 		{
             //TODO: Are these two columns good candidate for index?
-            $table->unsignedInteger('variation_id')->nullable()->index();
-            $table->unsignedInteger('value_id')->nullable()->index();
-            //$table->string('value', 32);
+            $table->unsignedInteger('variation_id')->index();
+            $table->unsignedInteger('product_option_value_id')->index();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->primary(['variation_id', 'value_id']);
+            $table->primary(['variation_id', 'product_option_value_id']);
 
             $table->foreign('variation_id')
                 ->references('id')
                 ->on('variations')
                 ->onDelete('cascade');
 
-            $table->foreign('value_id')
+            $table->foreign('product_option_value_id')
                 ->references('id')
-                ->on('values')
+                ->on('product_option_value')
                 ->onDelete('cascade');
 		});
 	}
@@ -42,7 +41,7 @@ class CreateVariationOptionValueTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('variation_option_value');
+		Schema::drop('variation_product_option_value');
 	}
 
 }

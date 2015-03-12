@@ -3,7 +3,7 @@
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Variation extends BaseModel implements VariationInterface {
+class Variation extends BaseModel implements IVariation {
 
 	//
 
@@ -60,12 +60,11 @@ class Variation extends BaseModel implements VariationInterface {
     /**
      * Adds a Value associated with this Variation and Option
      *
-     * @param OptionValueInterface $optionValue
+     * @param IOptionValue $optionValue
      */
-    public function addOptionValue(OptionValueInterface $optionValue)
+    public function addOptionValue(IOptionValue $optionValue)
     {
         $this->values()->attach($optionValue);
-        //return $this;
     }
 
     /**

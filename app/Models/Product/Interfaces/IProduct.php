@@ -11,7 +11,7 @@ namespace app\Models\Product;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-interface ProductInterface {
+interface IProduct {
 
     /**
      * Get Product name
@@ -52,8 +52,9 @@ interface ProductInterface {
     /**
      * Associate an Option to this {@link App\Models\Product\Product}
      *
+     * @param IOption $option
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function addOption(OptionInterface $option);
+    public function addOption(IOption $option);
 
 }
