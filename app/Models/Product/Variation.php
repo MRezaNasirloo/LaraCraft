@@ -1,7 +1,7 @@
 <?php namespace App\Models\Product;
 
 use App\Models\BaseModel;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Variation extends BaseModel implements IVariation {
 
@@ -47,12 +47,17 @@ class Variation extends BaseModel implements IVariation {
         $this->stock = $count;
     }
 
+    public function product()
+    {
+        return $this->belongsTo($this->namespaceProduct . '\Product');
+    }
+
     /**
      * Return the OptionValues associated with this Variation
      *
-     * @return HasMany
+     * @return BelongsToMany
      */
-    public function values()
+    public function optionValues()
     {
         return $this->belongsToMany($this->namespaceProduct . '\OptionValue', 'variation_option_value', 'variation_id', 'value_id')->withTimestamps();
     }
@@ -64,32 +69,18 @@ class Variation extends BaseModel implements IVariation {
      */
     public function addOptionValue(IOptionValue $optionValue)
     {
-        $this->values()->attach($optionValue);
+        $this->optionValues()->save($optionValue);
     }
 
     /**
-     * Adds an Option associated with this Variation
+     * Adds IOptionValues associated with this Variation
      *
-     * @param OptionValueInterface $optionValue
+     * @param array IOptionValue $optionValue
      */
-    /*public function addOption(OptionInterface $option, $value)
+    public function addOptionValues($optionValues)
     {
-       // $this->optionValues()->option()->save($option);
-        $this->options()->attach($option, ['value'  =>  $value]);
-    }*/
+        $this->isArrayOfIClass($optionValues, $this->namespaceProduct . '\IOptionValue');
 
-    /**
-     * Return the Options associated with this Variation
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    /*public function options()
-    {
-        return $this->belongsToMany($this->namespaceProduct . '\Option','option_value')->withPivot('value')->withTimestamps();
-    }*/
-    /**
-     * Return the OptionValues associated with this Variation
-     *
-     * @return HasMany
-     */
+        $this->optionValues()->saveMany($optionValues);
+    }
 }

@@ -6,7 +6,7 @@
  * Time: 2:27 PM
  */
 
-namespace app\Models\Product;
+namespace App\Models\Product;
 
 
 interface IProductOption {
@@ -38,34 +38,34 @@ interface IProductOption {
      *
      * @return HasMany
      */
-    public function values();
+    public function optionValues();
 
     /**
      * Adds an OptionValue for an Option
      *
      * @param IOptionValue $value
      */
-    public function addValue(IOptionValue $value);
+    public function addOptionValue(IOptionValue $value);
 
     /**
-     * Adds many OptionValue for an Option
+     * Adds many OptionValues for an ProductOption
      *
      * @param IOptionValue $value
      */
-    public function addValues($value);
+    public function addOptionValues($values);
 
     /**
      * Removes option value.
      *
      * @param IOptionValue $optionValue
      */
-    public function removeValue(IOptionValue $value);
+    public function removeOptionValue(IOptionValue $value);
 
     /**
      * Removes all option values.
      *
      */
-    public function removeAllValues();
+    public function removeAllOptionValues();
 
     /**
      * Checks whether option has given value.

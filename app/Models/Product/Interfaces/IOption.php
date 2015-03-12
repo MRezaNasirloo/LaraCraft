@@ -6,8 +6,7 @@
  * Time: 11:17 PM
  */
 
-namespace app\Models\Product;
-
+namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 

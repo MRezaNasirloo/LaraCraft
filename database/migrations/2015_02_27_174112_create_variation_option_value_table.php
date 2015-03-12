@@ -17,7 +17,7 @@ class CreateVariationOptionValueTable extends Migration {
             //TODO: Are these two columns good candidate for index?
             $table->unsignedInteger('variation_id')->nullable()->index();
             $table->unsignedInteger('value_id')->nullable()->index();
-            //$table->string('value', 32);
+
             $table->timestamps();
             $table->softDeletes();
 

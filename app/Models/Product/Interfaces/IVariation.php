@@ -6,7 +6,7 @@
  * Time: 11:18 PM
  */
 
-namespace app\Models\Product;
+namespace App\Models\Product;
 
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -46,14 +46,21 @@ interface IVariation {
      *
      * @return HasMany
      */
-    public function values();
+    public function optionValues();
 
     /**
-     * Return the ProductOptionValues associated with this Variation
+     * Adds a IOptionValue associated with this Variation
      *
-     * @return HasMany
+     * @param IOptionValue $optionValue
      */
-    public function productOptionValues();
+    public function addOptionValue(IOptionValue $optionValue);
+
+    /**
+     * Adds IOptionValues associated with this Variation
+     *
+     * @param array IOptionValue $optionValue
+     */
+    public function addOptionValues($optionValues);
 
     /**
      * Return the OptionValues associated with this Variation
@@ -62,20 +69,13 @@ interface IVariation {
      */
     //public function options();
 
-    /**
-     * Adds a Value associated with this Variation and Option
-     *
-     * @param IOptionValue $optionValue
-     */
-    public function addOptionValue(IOptionValue $optionValue);
 
-    /**
-     * Adds an Option associated with this Variation
-     *
-     * @param IOption $option
-     * @param String $value
-     * @internal param OptionValueInterface $optionValue
-     */
-    //public function addOption(IOption $option, $value);
+    /*
+    addOption{
+        $this->optionValues()->option()->save($option);
+        $this->options()->attach($option, ['value'  =>  $value]);
+    }*/
+
+
 
 }

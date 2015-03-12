@@ -44,7 +44,7 @@ class Option extends BaseModel implements IOption {
      */
     public function product()
     {
-        return $this->belongsToMany($this->namespaceProduct . '\Product');
+        return $this->belongsToMany($this->namespaceProduct . '\Product', 'product_option')->withTimestamps();
     }
 
     /**

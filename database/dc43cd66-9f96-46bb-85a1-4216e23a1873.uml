@@ -3,38 +3,34 @@
   <ID>DATABASE</ID>
   <OriginalElement>dc43cd66-9f96-46bb-85a1-4216e23a1873</OriginalElement>
   <nodes>
-    <node x="-378.39750308261404" y="414.64734895191117">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:products</node>
-    <node x="354.16678277811764" y="495.89990502607947">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:product_option</node>
-    <node x="-22.74522194821202" y="954.4352651048086">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variation_product_option_value</node>
-    <node x="-382.44682490752155" y="6.840937114673238">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:shops</node>
-    <node x="357.65536374845874" y="929.9815043156598">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:product_option_value</node>
-    <node x="81.81458076448826" y="11.70776818742294">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:users</node>
-    <node x="1002.0" y="0.0">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:migrations</node>
-    <node x="-346.6177558569667" y="904.9679408138103">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variations</node>
-    <node x="1235.0" y="0.0">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:sqlite_sequence</node>
-    <node x="791.200215782984" y="510.8797780517879">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:options</node>
-    <node x="786.762022194821" y="911.1017262638719">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:values</node>
-    <node x="786.0" y="0.0">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:password_resets</node>
+    <node x="-669.3019005847954" y="426.26315789473693">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:products</node>
+    <node x="-163.45102339181278" y="498.1491228070175">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:product_option</node>
+    <node x="-674.7872807017543" y="19.549707602339197">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:shops</node>
+    <node x="-170.54385964912262" y="949.3099415204681">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:product_option_value</node>
+    <node x="90.125" y="0.0">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:users</node>
+    <node x="1040.625" y="0.0">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:migrations</node>
+    <node x="-681.3567251461988" y="923.982456140351">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variations</node>
+    <node x="1273.625" y="0.0">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:sqlite_sequence</node>
+    <node x="268.28947368421063" y="472.7777777777778">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:options</node>
+    <node x="-189.0233918128655" y="1332.5877192982457">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variation_option_value</node>
+    <node x="315.8296783625731" y="920.111111111111">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:values</node>
+    <node x="824.625" y="0.0">dc43cd66-9f96-46bb-85a1-4216e23a1873.table:password_resets</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:product_option_value" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:product_option">
-      <point x="0.0" y="0.0" />
-      <point x="0.0" y="0.0" />
-    </edge>
     <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:values" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:options">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
+    <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:product_option_value" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:product_option">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variation_option_value" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variations">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
     <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variations" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:products">
-      <point x="0.0" y="0.0" />
-      <point x="0.0" y="0.0" />
-    </edge>
-    <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variation_product_option_value" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variations">
-      <point x="0.0" y="0.0" />
-      <point x="0.0" y="0.0" />
-    </edge>
-    <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variation_product_option_value" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:product_option_value">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
@@ -43,6 +39,10 @@
       <point x="0.0" y="0.0" />
     </edge>
     <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:product_option_value" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:values">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:variation_option_value" target="dc43cd66-9f96-46bb-85a1-4216e23a1873.table:values">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
@@ -59,7 +59,7 @@
       <point x="0.0" y="0.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.6270668773038441" x="340.08968760497146" y="735.6614880752435" />
+  <settings layout="Hierarchic Group" zoom="0.5166163141993958" x="463.406432748538" y="968.9152046783626" />
   <SelectedNodes />
   <Categories>
     <Category>Key columns</Category>

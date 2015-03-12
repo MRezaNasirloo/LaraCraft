@@ -6,7 +6,7 @@
  * Time: 11:18 PM
  */
 
-namespace app\Models\Product;
+namespace App\Models\Product;
 
 
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -37,9 +37,7 @@ interface IOptionValue {
 
     /**
      * Returns the Option associated with this OptionValue
-     *
-     * @return HasOne | Variation
      */
-    public function variation();
+    public function ProductOption();
 
 }

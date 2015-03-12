@@ -1,7 +1,7 @@
 <?php namespace App\Models\Product;
 
+use App\Exceptions\InvalidArgumentException;
 use App\Models\BaseModel;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends BaseModel implements IProduct {
 
@@ -37,7 +37,7 @@ class Product extends BaseModel implements IProduct {
      */
     public function options()
     {
-        return $this->belongsToMany($this->namespaceProduct . '\Option');
+        return $this->belongsToMany($this->namespaceProduct . '\Option', 'product_option')->withTimestamps();
     }
 
     /**
@@ -45,7 +45,20 @@ class Product extends BaseModel implements IProduct {
      */
     public function addOption(IOption $option)
     {
-        $this->options()->save($option);//TODO: Attach associate or save?
+        $this->options()->save($option);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addOptions($options)
+    {
+        /*$ids = [];//Attach associate or save? The answer is attach use the ids to relate map the rows together, However save() and saveMany use the actual object.
+        foreach($options as $option) {
+            $ids[] = $option->id;
+        }*/
+        $this->isArrayOfIClass($options, $this->namespaceProduct . '\IOption');
+        $this->options()->saveMany($options);
     }
 
 
@@ -66,12 +79,19 @@ class Product extends BaseModel implements IProduct {
     }
 
     /**
-     * Returns the Variations associated to this {@link App\Models\Product\Product}
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * {@inheritdoc}
      */
     public function variations()
     {
         return $this->hasMany($this->namespaceProduct . '\Variation');
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addVariation(IVariation $variation)
+    {
+        $this->variations()->save($variation);
+    }
+
 }

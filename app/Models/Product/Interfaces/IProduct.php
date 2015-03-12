@@ -6,9 +6,10 @@
  * Time: 11:17 PM
  */
 
-namespace app\Models\Product;
+namespace App\Models\Product;
 
 
+use app\Models\Product\IOption;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 interface IProduct {
@@ -50,11 +51,24 @@ interface IProduct {
     public function variations();
 
     /**
+     * Adds a Variation for to this {@link App\Models\Product\Product}
+     */
+    public function addVariation(IVariation $variation);
+
+    /**
      * Associate an Option to this {@link App\Models\Product\Product}
      *
      * @param IOption $option
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function addOption(IOption $option);
+
+    /**
+     * Associate Options to this {@link App\Models\Product\Product}
+     *
+     * @param array IOption $option
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function addOptions($options);
 
 }
