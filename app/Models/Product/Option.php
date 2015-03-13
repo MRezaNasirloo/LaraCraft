@@ -70,6 +70,7 @@ class Option extends BaseModel implements IOption {
      */
     public function addValues($values)//TODO: how exactly?
     {
+        $this->isArrayOfIClass($values, $this->namespaceProduct . '\IOptionValue');
         $this->values()->saveMany($values);
     }
 

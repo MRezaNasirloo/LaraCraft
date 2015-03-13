@@ -22,14 +22,12 @@
 		],
 		"psr-4": {
 			"App\\": "app/",
-            "App\\Laracraft\\": "app/",
-            "App\\Models\\Product\\": "app/Models/Product/Interfaces"
-
+            "App\\Laracraft\\": "app/"
 		}
 	},
 	"autoload-dev": {
 		"classmap": [
-
+          "app/"
 		],
       "psr-4": {
         "Tests\\": "tests/",

@@ -5,7 +5,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Variation extends BaseModel implements IVariation {
 
-	//
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'variations';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'price',
+        'stock'
+    ];
 
     /**
      * Gets the price of this Variation
