@@ -1,7 +1,6 @@
 <?php namespace App\Models\Product;
 
 use App\Models\BaseModel;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class OptionValue extends BaseModel implements IOptionValue{
 

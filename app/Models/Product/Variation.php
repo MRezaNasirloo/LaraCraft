@@ -23,9 +23,7 @@ class Variation extends BaseModel implements IVariation {
     ];
 
     /**
-     * Gets the price of this Variation
-     *
-     * @return Integer
+     * {@inheritdoc}
      */
     public function getPrice()
     {
@@ -33,9 +31,7 @@ class Variation extends BaseModel implements IVariation {
     }
 
     /**
-     * Sets the price of this Variation
-     *
-     * @param Integer $price
+     * {@inheritdoc}
      */
     public function setPrice($price)
     {
@@ -43,9 +39,7 @@ class Variation extends BaseModel implements IVariation {
     }
 
     /**
-     * Gets the stock count of this Variation
-     *
-     * @return Integer
+     * {@inheritdoc}
      */
     public function getStock()
     {
@@ -53,24 +47,23 @@ class Variation extends BaseModel implements IVariation {
     }
 
     /**
-     * Sets the stock count of this Variation
-     *
-     * @param Integer $count
+     * {@inheritdoc}
      */
     public function setStock($count)
     {
         $this->stock = $count;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function product()
     {
         return $this->belongsTo($this->namespaceProduct . '\Product');
     }
 
     /**
-     * Return the OptionValues associated with this Variation
-     *
-     * @return BelongsToMany
+     * {@inheritdoc}
      */
     public function optionValues()
     {
@@ -78,9 +71,7 @@ class Variation extends BaseModel implements IVariation {
     }
 
     /**
-     * Adds a Value associated with this Variation and Option
-     *
-     * @param IOptionValue $optionValue
+     * {@inheritdoc}
      */
     public function addOptionValue(IOptionValue $optionValue)
     {
@@ -88,9 +79,7 @@ class Variation extends BaseModel implements IVariation {
     }
 
     /**
-     * Adds IOptionValues associated with this Variation
-     *
-     * @param array IOptionValue $optionValue
+     * {@inheritdoc}
      */
     public function addOptionValues($optionValues)
     {

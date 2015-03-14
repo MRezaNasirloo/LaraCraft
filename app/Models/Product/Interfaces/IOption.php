@@ -1,12 +1,5 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Mamareza
- * Date: 2015-03-05
- * Time: 11:17 PM
- */
+<?php namespace App\Models\Product;
 
-namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -27,8 +20,9 @@ interface IOption {
      */
     public function setName($name);
 
+
     /**
-     * Returns associated OptionValue to this Option
+     * Returns associated Product to this Option
      *
      * @return HasMany
      */
@@ -45,7 +39,6 @@ interface IOption {
      * Adds an OptionValue for an Option
      *
      * @param IOptionValue $value
-     * @return
      */
     public function addValue(IOptionValue $value);
 
@@ -57,7 +50,7 @@ interface IOption {
     public function addValues($value);
 
     /**
-     * Removes option value.
+     * Removes the given option value.
      *
      * @param IOptionValue $optionValue
      */
@@ -65,7 +58,6 @@ interface IOption {
 
     /**
      * Removes all option values.
-     *
      */
     public function removeAllValues();
 

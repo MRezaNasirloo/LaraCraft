@@ -16,7 +16,7 @@ class CreateOptionsTable extends Migration {
 		{
 			$table->increments('id');
             $table->string('name', 32);
-            $table->boolean('by_admin');
+            $table->boolean('by_admin')->default(false);
             $table->timestamps();
             $table->softDeletes();
 

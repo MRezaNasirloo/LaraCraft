@@ -1,25 +1,20 @@
 <?php namespace App\Models\Product;
 
 
-use Illuminate\Support\Collection;
-
 class VariationGenerator extends BaseGenerator implements IGenerator {
 
 
     /**
-     * Generate all possible variation from Product using its Options and OptionValues.
-     *
-     * @param IProduct $product
-     * @return Collection of Variation
+     * @inheritdoc
      */
     public static function generate(IProduct $product)
     {
-        $options = $product->options()->get();
+        $options = $product->productOptions()->get();
         $optionValues = [];
         foreach ($options as $option) {
-            $optionValues[] = $option->values()->get()->all();
+            $optionValues[] = $option->optionValues()->get()->all();
         }
-
+        $optionValues = array_filter($optionValues);
         $optionValuesCartesian = self::cartesianProduct($optionValues);
 
         foreach($optionValuesCartesian as $optionValues){
@@ -28,9 +23,11 @@ class VariationGenerator extends BaseGenerator implements IGenerator {
             if(!empty($optionValues))
                 $variation->addOptionValues($optionValues);
         }
+        return $product->variations()->get();
     }
 
     /**
+     * Returns the cartesian product of the given array.
      *
      * @param array $set
      * @return array

@@ -1,47 +1,21 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Mamareza
- * Date: 2015-03-12
- * Time: 2:27 PM
- */
+<?php namespace App\Models\Product;
 
-namespace App\Models\Product;
 
+
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 interface IProductOption {
 
-    /**
-     * Get Option name
-     *
-     * @return String
-     */
-    public function getName();
-
-    /**
-     * Set Option name
-     *
-     * @param $name
-     * @return String
-     */
-    public function setName($name);
 
     /**
      * Returns associated OptionValue to this Option
      *
-     * @return HasMany
-     */
-    public function product();
-
-    /**
-     * Returns associated OptionValue to this Option
-     *
-     * @return HasMany
+     * @return BelongsToMany
      */
     public function optionValues();
 
     /**
-     * Adds an OptionValue for an Option
+     * Adds an IOptionValue for an ProductOption
      *
      * @param IOptionValue $value
      */
@@ -50,20 +24,19 @@ interface IProductOption {
     /**
      * Adds many OptionValues for an ProductOption
      *
-     * @param IOptionValue $value
+     * @param array IOptionValue $value
      */
     public function addOptionValues($values);
 
     /**
-     * Removes option value.
+     * Removes an IOptionValue.
      *
      * @param IOptionValue $optionValue
      */
     public function removeOptionValue(IOptionValue $value);
 
     /**
-     * Removes all option values.
-     *
+     * Removes all IOptionValue.
      */
     public function removeAllOptionValues();
 

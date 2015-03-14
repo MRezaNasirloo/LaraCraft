@@ -136,4 +136,12 @@ class OptionTest extends DBTestCase {
 
     }
 
+    /** @test */
+    public function its_by_admin_value_defaults_to_false()
+    {
+        Option::create(['name' => 'Color']);
+        $option = Option::where('name' , 'Color')->first();
+        $this->assertEquals(0, $option->by_admin);
+    }
+
 }

@@ -13,51 +13,15 @@ class ProductOption extends BaseModel implements IProductOption {
 
 
     /**
-     * Get Option name
-     *
-     * @return String
-     */
-    public function getName()
-    {
-        // TODO: Implement getName() method.
-    }
-
-    /**
-     * Set Option name
-     *
-     * @param $name
-     * @return String
-     */
-    public function setName($name)
-    {
-        // TODO: Implement setName() method.
-    }
-
-    /**
-     * Returns associated OptionValue to this Option
-     *
-     * @return HasMany
-     */
-    public function product()
-    {
-        // TODO: Implement product() method.
-    }
-
-    /**
-     * Returns associated OptionValue to this ProductOption
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * {@inheritdoc}
      */
     public function optionValues()
     {
-        //return $this->hasMany($this->namespaceProduct . '\ProductOptionValue', 'product_option_value');
         return $this->belongsToMany($this->namespaceProduct . '\OptionValue', 'product_option_value', 'product_option_id', 'value_id')->withTimestamps();
     }
 
     /**
-     * Adds an OptionValue for an Option
-     *
-     * @param IOptionValue $value
+     * {@inheritdoc}
      */
     public function addOptionValue(IOptionValue $value)
     {
@@ -65,9 +29,7 @@ class ProductOption extends BaseModel implements IProductOption {
     }
 
     /**
-     * Adds many OptionValue for an Option
-     *
-     * @param IOptionValue $value
+     * {@inheritdoc}
      */
     public function addOptionValues($values)
     {
@@ -76,9 +38,7 @@ class ProductOption extends BaseModel implements IProductOption {
     }
 
     /**
-     * Removes option value.
-     *
-     * @param IOptionValue $optionValue
+     * {@inheritdoc}
      */
     public function removeOptionValue(IOptionValue $value)
     {
@@ -86,8 +46,7 @@ class ProductOption extends BaseModel implements IProductOption {
     }
 
     /**
-     * Removes all option values.
-     *
+     * {@inheritdoc}
      */
     public function removeAllOptionValues()
     {

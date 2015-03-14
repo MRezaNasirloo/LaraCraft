@@ -1,7 +1,6 @@
 <?php namespace App\Models\Product;
 
 use App\Models\BaseModel;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Option extends BaseModel implements IOption {
 
@@ -18,7 +17,8 @@ class Option extends BaseModel implements IOption {
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name',
+        'by_admin'
     ];
 
     /**
@@ -38,9 +38,15 @@ class Option extends BaseModel implements IOption {
     }
 
     /**
-     * Returns associated Product to this Option
-     *
-     * @return HasMany
+     * {@inheritdoc}
+     */
+    /*public function setByAdminAttribute($value)
+    {
+        $this->attributes['by_admin'] = $value ? : false;
+    }*/
+
+    /**
+     * {@inheritdoc}
      */
     public function product()
     {
@@ -48,9 +54,7 @@ class Option extends BaseModel implements IOption {
     }
 
     /**
-     * Returns associated OptionValue to this Option
-     *
-     * @return HasMany
+     * {@inheritdoc}
      */
     public function values()
     {
@@ -68,7 +72,7 @@ class Option extends BaseModel implements IOption {
     /**
      * {@inheritdoc}
      */
-    public function addValues($values)//TODO: how exactly?
+    public function addValues($values)
     {
         $this->isArrayOfIClass($values, $this->namespaceProduct . '\IOptionValue');
         $this->values()->saveMany($values);
@@ -100,4 +104,5 @@ class Option extends BaseModel implements IOption {
     {
         return $this->values->contains($value);
     }*/
+
 }

@@ -1,15 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Mamareza
- * Date: 2015-03-05
- * Time: 11:17 PM
- */
-
-namespace App\Models\Product;
+<?php namespace App\Models\Product;
 
 
-use app\Models\Product\IOption;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 interface IProduct {
@@ -39,9 +30,16 @@ interface IProduct {
     /**
      * Returns the Options associated to this {@link App\Models\Product\Product}
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function options();
+
+    /**
+     * Returns the ProductOptions associated to this {@link App\Models\Product\Product}
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function productOptions();
 
     /**
      * Returns the Variations associated to this {@link App\Models\Product\Product}
@@ -59,7 +57,6 @@ interface IProduct {
      * Associate an Option to this {@link App\Models\Product\Product}
      *
      * @param IOption $option
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function addOption(IOption $option);
 
@@ -67,7 +64,6 @@ interface IProduct {
      * Associate Options to this {@link App\Models\Product\Product}
      *
      * @param array IOption $option
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function addOptions($options);
 

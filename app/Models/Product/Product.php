@@ -1,6 +1,5 @@
 <?php namespace App\Models\Product;
 
-use App\Exceptions\InvalidArgumentException;
 use App\Models\BaseModel;
 
 class Product extends BaseModel implements IProduct {
@@ -21,7 +20,8 @@ class Product extends BaseModel implements IProduct {
         'name',
         'slug',
         'photo_product',
-        'description'
+        'description',
+        'shop_id'
     ];
 
     /**
@@ -38,6 +38,14 @@ class Product extends BaseModel implements IProduct {
     public function options()
     {
         return $this->belongsToMany($this->namespaceProduct . '\Option', 'product_option')->withTimestamps();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function productOptions()
+    {
+        return $this->hasMany($this->namespaceProduct . '\ProductOption');
     }
 
     /**

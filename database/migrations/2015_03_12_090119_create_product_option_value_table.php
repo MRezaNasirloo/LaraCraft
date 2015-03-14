@@ -14,12 +14,13 @@ class CreateProductOptionValueTable extends Migration {
 	{
 		Schema::create('product_option_value', function(Blueprint $table)
 		{
-            $table->increments('id');
             $table->unsignedInteger('product_option_id')->index();
             $table->unsignedInteger('value_id')->index();
 
             $table->softDeletes();
             $table->timestamps();
+
+            $table->primary(['product_option_id', 'value_id']);
 
             $table->foreign('product_option_id')
                 ->references('id')

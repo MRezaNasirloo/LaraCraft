@@ -1,15 +1,8 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Mamareza
- * Date: 2015-03-05
- * Time: 11:18 PM
- */
-
-namespace App\Models\Product;
+<?php namespace App\Models\Product;
 
 
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 interface IVariation {
 
@@ -42,9 +35,16 @@ interface IVariation {
     public function setStock($count);
 
     /**
+     * Returns the associated Product to this Variation
+     *
+     * @return BelongsTO
+     */
+    public function product();
+
+    /**
      * Return the OptionValues associated with this Variation
      *
-     * @return HasMany
+     * @return BelongsToMany
      */
     public function optionValues();
 
@@ -63,18 +63,12 @@ interface IVariation {
     public function addOptionValues($optionValues);
 
     /**
-     * Return the OptionValues associated with this Variation
+     * Return the Options associated with this Variation
      *
      * @return
      */
     //public function options();
 
-
-    /*
-    addOption{
-        $this->optionValues()->option()->save($option);
-        $this->options()->attach($option, ['value'  =>  $value]);
-    }*/
 
 
 
