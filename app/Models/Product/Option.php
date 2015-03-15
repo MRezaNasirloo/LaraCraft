@@ -1,9 +1,8 @@
 <?php namespace App\Models\Product;
 
 use App\Models\BaseModel;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Option extends BaseModel implements OptionInterface {
+class Option extends BaseModel implements IOption {
 
     /**
      * The database table used by the model.
@@ -18,7 +17,8 @@ class Option extends BaseModel implements OptionInterface {
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name',
+        'by_admin'
     ];
 
     /**
@@ -38,19 +38,23 @@ class Option extends BaseModel implements OptionInterface {
     }
 
     /**
-     * Returns associated Product to this Option
-     *
-     * @return HasMany
+     * {@inheritdoc}
+     */
+    /*public function setByAdminAttribute($value)
+    {
+        $this->attributes['by_admin'] = $value ? : false;
+    }*/
+
+    /**
+     * {@inheritdoc}
      */
     public function product()
     {
-        return $this->belongsTo($this->namespaceProduct . '\Product');
+        return $this->belongsToMany($this->namespaceProduct . '\Product', 'product_option')->withTimestamps();
     }
 
     /**
-     * Returns associated OptionValue to this Option
-     *
-     * @return HasMany
+     * {@inheritdoc}
      */
     public function values()
     {
@@ -60,7 +64,7 @@ class Option extends BaseModel implements OptionInterface {
     /**
      * {@inheritdoc}
      */
-    public function addValue(OptionValueInterface $value)
+    public function addValue(IOptionValue $value)
     {
         $this->values()->save($value);
     }
@@ -68,15 +72,16 @@ class Option extends BaseModel implements OptionInterface {
     /**
      * {@inheritdoc}
      */
-    public function addValues($values)//TODO: how exactly?
+    public function addValues($values)
     {
+        $this->isArrayOfIClass($values, $this->namespaceProduct . '\IOptionValue');
         $this->values()->saveMany($values);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function removeValue(OptionValueInterface $value)
+    public function removeValue(IOptionValue $value)
     {
         $value->delete();
     }
@@ -95,8 +100,9 @@ class Option extends BaseModel implements OptionInterface {
     /**
      * {@inheritdoc}
      */
-    /*public function hasValue(OptionValueInterface $value)
+    /*public function hasValue(IOptionValue $value)
     {
         return $this->values->contains($value);
     }*/
+
 }

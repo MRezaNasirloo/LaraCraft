@@ -1,17 +1,9 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Mamareza
- * Date: 2015-03-05
- * Time: 11:18 PM
- */
-
-namespace app\Models\Product;
+<?php namespace App\Models\Product;
 
 
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-interface OptionValueInterface {
+interface IOptionValue {
 
     /**
      * Get Option Value
@@ -24,22 +16,19 @@ interface OptionValueInterface {
      * Set Option Value
      *
      * @param $value
-     * @return String
      */
     public function setValue($value);
 
     /**
      * Returns the Option associated with this OptionValue
      *
-     * @return HasOne | Option
+     * @return BelongsTo
      */
     public function option();
 
     /**
      * Returns the Option associated with this OptionValue
-     *
-     * @return HasOne | Variation
      */
-    public function variation();
+    public function ProductOption();
 
 }

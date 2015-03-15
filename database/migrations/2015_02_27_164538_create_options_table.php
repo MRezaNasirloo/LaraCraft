@@ -15,15 +15,10 @@ class CreateOptionsTable extends Migration {
 		Schema::create('options', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->unsignedInteger('product_id')->index();
             $table->string('name', 32);
+            $table->boolean('by_admin')->default(false);
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('product_id')
-                ->references('id')
-                ->on('products')
-                ->onDelete('cascade');
 
 		});
 	}

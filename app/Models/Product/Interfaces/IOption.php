@@ -1,17 +1,9 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Mamareza
- * Date: 2015-03-05
- * Time: 11:17 PM
- */
-
-namespace app\Models\Product;
+<?php namespace App\Models\Product;
 
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-interface OptionInterface {
+interface IOption {
 
     /**
      * Get Option name
@@ -28,8 +20,9 @@ interface OptionInterface {
      */
     public function setName($name);
 
+
     /**
-     * Returns associated OptionValue to this Option
+     * Returns associated Product to this Option
      *
      * @return HasMany
      */
@@ -45,38 +38,37 @@ interface OptionInterface {
     /**
      * Adds an OptionValue for an Option
      *
-     * @param OptionValueInterface $value
+     * @param IOptionValue $value
      */
-    public function addValue(OptionValueInterface $value);
+    public function addValue(IOptionValue $value);
 
     /**
      * Adds many OptionValue for an Option
      *
-     * @param OptionValueInterface $value
+     * @param IOptionValue[] $value
      */
     public function addValues($value);
 
     /**
-     * Removes option value.
+     * Removes the given option value.
      *
-     * @param OptionValueInterface $optionValue
+     * @param IOptionValue $optionValue
      */
-    public function removeValue(OptionValueInterface $value);
+    public function removeValue(IOptionValue $value);
 
     /**
      * Removes all option values.
-     *
      */
     public function removeAllValues();
 
     /**
      * Checks whether option has given value.
      *
-     * @param OptionValueInterface $optionValue
+     * @param IOptionValue $optionValue
      *
      * @return Boolean
      */
-    //public function hasValue(OptionValueInterface $value);
+    //public function hasValue(IOptionValue $value);
 
     /**
      * @return mixed

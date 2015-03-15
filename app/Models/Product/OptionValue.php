@@ -1,9 +1,8 @@
 <?php namespace App\Models\Product;
 
 use App\Models\BaseModel;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class OptionValue extends BaseModel implements OptionValueInterface{
+class OptionValue extends BaseModel implements IOptionValue{
 
     /**
      * The database table used by the model.
@@ -19,7 +18,8 @@ class OptionValue extends BaseModel implements OptionValueInterface{
      */
     protected $fillable = [
         'value',
-        'option_id'
+        'option_id',
+        'by_admin'
     ];
 
     /**
@@ -50,8 +50,8 @@ class OptionValue extends BaseModel implements OptionValueInterface{
     /**
      * {@inheritdoc}
      */
-    public function variation()
+    public function productOption()
     {
-        return $this->belongsToMany($this->namespaceProduct . '\Variation', 'variation_option_value', 'value_id', 'variation_id')->withTimestamps();
+        return $this->belongsToMany($this->namespaceProduct . '\ProductOption', 'product_option_value', 'value_id','product_option_id' );
     }
 }

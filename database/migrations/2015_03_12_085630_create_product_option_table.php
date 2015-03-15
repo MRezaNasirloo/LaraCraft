@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVariationsTable extends Migration {
+class CreateProductOptionTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,20 +12,26 @@ class CreateVariationsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('variations', function(Blueprint $table)
+		Schema::create('product_option', function(Blueprint $table)
 		{
 			$table->increments('id');
             $table->unsignedInteger('product_id')->index();
-            $table->decimal('price',10,2);//TODO: Use money class.
-            $table->integer('stock');
-            $table->timestamps();
+            $table->unsignedInteger('option_id')->index();
+
             $table->softDeletes();
+			$table->timestamps();
+
+            $table->unique(['product_id','option_id']);
 
             $table->foreign('product_id')
                 ->references('id')
                 ->on('products')
                 ->onDelete('cascade');
 
+            $table->foreign('option_id')
+                ->references('id')
+                ->on('options')
+                ->onDelete('cascade');
 		});
 	}
 
@@ -36,7 +42,7 @@ class CreateVariationsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('variations');
+		Schema::drop('product_option');
 	}
 
 }
