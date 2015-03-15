@@ -6,11 +6,14 @@ use Laracasts\TestDummy\Factory;
 class UserTest extends DBTestCase {
 
     /** @test */
-    public function it_should_return_a_shop_instance()
+    public function it_should_return_a_user_instance()
     {
-        $user = Factory::create('App\Models\User');
-        $shop = $user->shop()->first();
-        var_dump($shop);
+        //$user = Factory::create('App\Models\User');
+        $shop = Factory::create('App\Models\Shop');
+        $user = $shop->user()->first();
+        //var_dump($user->toArray());
+        //var_dump($shop->toArray());
+        $this->assertEquals('App\Models\User',get_class($user));
 
     }
 

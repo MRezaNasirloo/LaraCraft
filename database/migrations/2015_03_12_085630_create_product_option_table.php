@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductOption extends Migration {
+class CreateProductOptionTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,10 +14,14 @@ class CreateProductOption extends Migration {
 	{
 		Schema::create('product_option', function(Blueprint $table)
 		{
-			$table->unsignedInteger('product_id');
-            $table->unsignedInteger('option_id');
+			$table->increments('id');
+            $table->unsignedInteger('product_id')->index();
+            $table->unsignedInteger('option_id')->index();
 
-            $table->primary(['product_id', 'option_id']);
+            $table->softDeletes();
+			$table->timestamps();
+
+            $table->unique(['product_id','option_id']);
 
             $table->foreign('product_id')
                 ->references('id')
@@ -28,7 +32,6 @@ class CreateProductOption extends Migration {
                 ->references('id')
                 ->on('options')
                 ->onDelete('cascade');
-
 		});
 	}
 

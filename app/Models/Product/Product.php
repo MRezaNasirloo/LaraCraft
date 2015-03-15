@@ -1,9 +1,8 @@
 <?php namespace App\Models\Product;
 
 use App\Models\BaseModel;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Product extends BaseModel implements ProductInterface {
+class Product extends BaseModel implements IProduct {
 
     /**
      * The database table used by the model.
@@ -21,7 +20,8 @@ class Product extends BaseModel implements ProductInterface {
         'name',
         'slug',
         'photo_product',
-        'description'
+        'description',
+        'shop_id'
     ];
 
     /**
@@ -37,15 +37,36 @@ class Product extends BaseModel implements ProductInterface {
      */
     public function options()
     {
-        return $this->belongsToMany($this->namespaceProduct . '\Option', 'product_option');
+        return $this->belongsToMany($this->namespaceProduct . '\Option', 'product_option')->withTimestamps();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function addOption(OptionInterface $option)
+    public function productOptions()
     {
-        $this->options()->attach($option);
+        return $this->hasMany($this->namespaceProduct . '\ProductOption');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addOption(IOption $option)
+    {
+        $this->options()->save($option);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addOptions($options)
+    {
+        /*$ids = [];//Attach associate or save? The answer is attach use the ids to relate map the rows together, However save() and saveMany use the actual object.
+        foreach($options as $option) {
+            $ids[] = $option->id;
+        }*/
+        $this->isArrayOfIClass($options, $this->namespaceProduct . '\IOption');
+        $this->options()->saveMany($options);
     }
 
 
@@ -63,7 +84,22 @@ class Product extends BaseModel implements ProductInterface {
     public function setName($name)
     {
         $this->name = $name;
-        //return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function variations()
+    {
+        return $this->hasMany($this->namespaceProduct . '\Variation');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addVariation(IVariation $variation)
+    {
+        $this->variations()->save($variation);
     }
 
 }

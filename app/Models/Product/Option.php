@@ -1,9 +1,8 @@
 <?php namespace App\Models\Product;
 
 use App\Models\BaseModel;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Option extends BaseModel implements OptionInterface{
+class Option extends BaseModel implements IOption {
 
     /**
      * The database table used by the model.
@@ -18,7 +17,8 @@ class Option extends BaseModel implements OptionInterface{
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name',
+        'by_admin'
     ];
 
     /**
@@ -35,13 +35,26 @@ class Option extends BaseModel implements OptionInterface{
     public function setName($name)
     {
         $this->name = $name;
-        //return $this;
     }
 
     /**
-     * Returns associated OptionValue to this Option
-     *
-     * @return HasMany
+     * {@inheritdoc}
+     */
+    /*public function setByAdminAttribute($value)
+    {
+        $this->attributes['by_admin'] = $value ? : false;
+    }*/
+
+    /**
+     * {@inheritdoc}
+     */
+    public function product()
+    {
+        return $this->belongsToMany($this->namespaceProduct . '\Product', 'product_option')->withTimestamps();
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function values()
     {
@@ -49,34 +62,28 @@ class Option extends BaseModel implements OptionInterface{
     }
 
     /**
-     * Adds an OptionValue for an Option
-     *
-     * @param OptionValueInterface $value
+     * {@inheritdoc}
      */
-    public function addValue(OptionValueInterface $value)
+    public function addValue(IOptionValue $value)
     {
         $this->values()->save($value);
-        //return $this;
-    }
-
-    /**
-     * Adds many OptionValue for an Option
-     *
-     * @param OptionValueInterface $value
-     */
-    public function addValues(OptionValueInterface $value)//TODO: how exactly?
-    {
-        $this->values()->saveMany($value);
-        //return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function removeValue(OptionValueInterface $value)
+    public function addValues($values)
+    {
+        $this->isArrayOfIClass($values, $this->namespaceProduct . '\IOptionValue');
+        $this->values()->saveMany($values);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeValue(IOptionValue $value)
     {
         $value->delete();
-        //return $this;
     }
 
     /**
@@ -88,15 +95,14 @@ class Option extends BaseModel implements OptionInterface{
         {
             $value->delete();
         }
-
-        //return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    /*public function hasValue(OptionValueInterface $value)
+    /*public function hasValue(IOptionValue $value)
     {
         return $this->values->contains($value);
     }*/
+
 }

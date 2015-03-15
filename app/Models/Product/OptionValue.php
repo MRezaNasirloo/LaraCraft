@@ -1,16 +1,15 @@
 <?php namespace App\Models\Product;
 
 use App\Models\BaseModel;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class OptionValue extends BaseModel implements OptionValueInterface{
+class OptionValue extends BaseModel implements IOptionValue{
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'option_value';
+    protected $table = 'values';
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +17,9 @@ class OptionValue extends BaseModel implements OptionValueInterface{
      * @var array
      */
     protected $fillable = [
-        'value'
+        'value',
+        'option_id',
+        'by_admin'
     ];
 
     /**
@@ -39,9 +40,7 @@ class OptionValue extends BaseModel implements OptionValueInterface{
 
 
     /**
-     * Returns the Option associated with this OptionValue
-     *
-     * @return HasOne | Option
+     * {@inheritdoc}
      */
     public function option()
     {
@@ -49,12 +48,10 @@ class OptionValue extends BaseModel implements OptionValueInterface{
     }
 
     /**
-     * Returns the Option associated with this OptionValue
-     *
-     * @return HasOne | Option
+     * {@inheritdoc}
      */
-    public function variation()
+    public function productOption()
     {
-        return $this->belongsTo($this->namespaceProduct . '\Variation');
+        return $this->belongsToMany($this->namespaceProduct . '\ProductOption', 'product_option_value', 'value_id','product_option_id' );
     }
 }

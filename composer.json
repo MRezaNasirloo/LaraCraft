@@ -27,10 +27,11 @@
 	},
 	"autoload-dev": {
 		"classmap": [
-
+          "app/"
 		],
       "psr-4": {
-        "Tests\\": "tests/"
+        "Tests\\": "tests/",
+        "Tests\\": "tests/TestSetup"
       }
 	},
 	"scripts": {

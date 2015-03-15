@@ -1,16 +1,29 @@
 <?php namespace App\Models\Product;
 
 use App\Models\BaseModel;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Variation extends BaseModel implements VariationInterface {
-
-	//
+class Variation extends BaseModel implements IVariation {
 
     /**
-     * Gets the price of this Variation
+     * The database table used by the model.
      *
-     * @return Integer
+     * @var string
+     */
+    protected $table = 'variations';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'price',
+        'stock'
+    ];
+
+    /**
+     * {@inheritdoc}
      */
     public function getPrice()
     {
@@ -18,9 +31,7 @@ class Variation extends BaseModel implements VariationInterface {
     }
 
     /**
-     * Sets the price of this Variation
-     *
-     * @param Integer $price
+     * {@inheritdoc}
      */
     public function setPrice($price)
     {
@@ -28,9 +39,7 @@ class Variation extends BaseModel implements VariationInterface {
     }
 
     /**
-     * Gets the stock count of this Variation
-     *
-     * @return Integer
+     * {@inheritdoc}
      */
     public function getStock()
     {
@@ -38,9 +47,7 @@ class Variation extends BaseModel implements VariationInterface {
     }
 
     /**
-     * Sets the stock count of this Variation
-     *
-     * @param Integer $count
+     * {@inheritdoc}
      */
     public function setStock($count)
     {
@@ -48,44 +55,36 @@ class Variation extends BaseModel implements VariationInterface {
     }
 
     /**
-     * Return the OptionValues associated with this Variation
-     *
-     * @return HasMany
+     * {@inheritdoc}
+     */
+    public function product()
+    {
+        return $this->belongsTo($this->namespaceProduct . '\Product');
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function optionValues()
     {
-        return $this->hasMany($this->namespaceroduct . '\OptionValue');
+        return $this->belongsToMany($this->namespaceProduct . '\OptionValue', 'variation_option_value', 'variation_id', 'value_id')->withTimestamps();
     }
 
     /**
-     * Adds a Value associated with this Variation and Option
-     *
-     * @param OptionValueInterface $optionValue
+     * {@inheritdoc}
      */
-    public function addOptionValue(OptionValueInterface $optionValue)
+    public function addOptionValue(IOptionValue $optionValue)
     {
         $this->optionValues()->save($optionValue);
-        return $this;
     }
 
     /**
-     * Adds an Option associated with this Variation
-     *
-     * @param OptionValueInterface $optionValue
+     * {@inheritdoc}
      */
-    public function addOption(OptionInterface $option, $value)
+    public function addOptionValues($optionValues)
     {
-       // $this->optionValues()->option()->save($option);
-        $this->options()->attach($option, ['value'  =>  $value]);
-    }
+        $this->isArrayOfIClass($optionValues, $this->namespaceProduct . '\IOptionValue');
 
-    /**
-     * Return the Options associated with this Variation
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function options()
-    {
-        return $this->belongsToMany($this->namespaceProduct . '\Option','option_value')->withPivot('value')->withTimestamps();
+        $this->optionValues()->saveMany($optionValues);
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOptionValueTable extends Migration {
+class CreateVariationOptionValueTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,25 +12,25 @@ class CreateOptionValueTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('option_value', function(Blueprint $table)
+		Schema::create('variation_option_value', function(Blueprint $table)
 		{
             //TODO: Are these two columns good candidate for index?
-            $table->unsignedInteger('variation_id')->nullable();
-            $table->unsignedInteger('option_id')->nullable();
-            $table->string('value', 32);
+            $table->unsignedInteger('variation_id')->nullable()->index();
+            $table->unsignedInteger('value_id')->nullable()->index();
+
             $table->timestamps();
             $table->softDeletes();
 
-            $table->primary(['variation_id', 'option_id']);
+            $table->primary(['variation_id', 'value_id']);
 
             $table->foreign('variation_id')
                 ->references('id')
                 ->on('variations')
                 ->onDelete('cascade');
 
-            $table->foreign('option_id')
+            $table->foreign('value_id')
                 ->references('id')
-                ->on('options')
+                ->on('values')
                 ->onDelete('cascade');
 		});
 	}
@@ -42,7 +42,7 @@ class CreateOptionValueTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('option_value');
+		Schema::drop('variation_option_value');
 	}
 
 }

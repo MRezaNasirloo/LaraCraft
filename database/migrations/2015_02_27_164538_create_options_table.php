@@ -15,7 +15,8 @@ class CreateOptionsTable extends Migration {
 		Schema::create('options', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->string('name', 32)->unique();
+            $table->string('name', 32);
+            $table->boolean('by_admin')->default(false);
             $table->timestamps();
             $table->softDeletes();
 
