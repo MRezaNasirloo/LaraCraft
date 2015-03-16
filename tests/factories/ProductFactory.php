@@ -7,7 +7,7 @@
  */
 
 $factory('App\Models\Product\Product', 'Product', [
-    'shop_id'       =>  'factory:App\Models\Shop',
+    'shop_id'       =>  'factory:Shop',
     'name'          =>  $faker->word,
     'slug'          =>  $faker->slug,
     'photo_product' =>  $faker->imageUrl($width = rand(), $height = rand()),
@@ -20,28 +20,28 @@ $factory('App\Models\Product\Option', 'Option', [
 ]);
 
 $factory('App\Models\Product\OptionValue', 'OptionValue', [
-    'option_id'     => 'factory:App\Models\Product\Option',
+    'option_id'     => 'factory:Option',
     'by_admin'      => $faker->boolean(),
     'Value'         => $faker->randomElement($array = array ('Small','Medium','Large', 'XL', 'XXL', 'Red', 'Green', 'Black', 'Blue'))
 ]);
 
 $factory('App\Models\Product\Variation', 'Variation', [
-    'product_id'    => 'factory:App\Models\Product\Product',
+    'product_id'    => 'factory:Product',
     'price'         => $faker->numberBetween($min = 10, $max = 2000),
     'stock'         => $faker->randomDigitNotNull
 ]);
 
 $factory('App\Models\Product\ProductOption', 'ProductOption', [
-    'product_id'    => 'factory:App\Models\Product\Product',
-    'option_id'    => 'factory:App\Models\Product\Option',
+    'product_id'    => 'factory:Product',
+    'option_id'    => 'factory:Option',
 ]);
 
 $factory('App\Models\Product\ProductOptionValue', 'ProductOptionValue', [
-    'product_option_id'    => 'factory:App\Models\Product\ProductOption',
-    'value_id'    => 'factory:App\Models\Product\OptionValue',
+    'product_option_id'    => 'factory:ProductOption',
+    'value_id'    => 'factory:OptionValue',
 ]);
 
 $factory('App\Models\Product\ProductOptionValue', 'ProductOptionValue', [
-    'product_option_id'    => 'factory:App\Models\Product\ProductOption',
-    'value_id'    => 'factory:App\Models\Product\OptionValue',
+    'product_option_id'    => 'factory:ProductOption',
+    'value_id'    => 'factory:OptionValue',
 ]);
