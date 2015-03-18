@@ -1,5 +1,5 @@
 Feature: LaraCraft Auth
-  In order to use the laracraft features
+  In order to use the laracraft
   As a user
   I should be able to sign up for a new account
 

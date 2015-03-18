@@ -1,7 +1,17 @@
 default:
-    extensions:
-        Laracasts\Behat:
-            # env_path: .env.behat
-        Behat\MinkExtension:
-            default_session: laravel
-            laravel: ~
+      autoload:
+          '': tests/behat/features/bootstrap
+      suites:
+          default:
+              paths:
+                  [tests/behat/features]
+              contexts:
+                  - FeatureContext
+      extensions:
+          Laracasts\Behat:
+              # env_path: .env.behat
+          Behat\MinkExtension:
+              default_session: laravel
+              laravel: ~
+
+#%paths.base%
