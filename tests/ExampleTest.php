@@ -24,7 +24,7 @@ class ExampleTest extends DBTestCase {
      */
     public function testHomeController()
     {
-        $user = Factory::create($this->namespaceModels . '\User');
+        $user = Factory::create('User');
         $this->be($user);
         $response = $this->call('GET', '/home');
         //var_dump($user->toArray());
@@ -34,7 +34,7 @@ class ExampleTest extends DBTestCase {
     /** @test */
     public function it_should_return_a_product_instance()
     {
-        $product = Factory::create($this->namespaceProduct . '\Product');
+        $product = Factory::create('Product');
         //var_dump($product->toArray());
         $this->assertEquals($this->namespaceProduct . '\Product',get_class($product));
 
@@ -43,7 +43,7 @@ class ExampleTest extends DBTestCase {
     /** @test */
     public function it_should_return_an_option_instance()
     {
-        $option = Factory::create($this->namespaceProduct . '\Option');
+        $option = Factory::create('Option');
 //        var_dump($option->toArray());
         $this->assertEquals($this->namespaceProduct . '\Option',get_class($option));
 
@@ -52,7 +52,7 @@ class ExampleTest extends DBTestCase {
     /** @test */
     public function it_should_return_an_option_value_instance()
     {
-        $optionValue = Factory::create($this->namespaceProduct . '\OptionValue');
+        $optionValue = Factory::create('OptionValue');
 //        var_dump($optionValue->toArray());
         $this->assertEquals($this->namespaceProduct . '\OptionValue',get_class($optionValue));
 
@@ -61,7 +61,7 @@ class ExampleTest extends DBTestCase {
     /** @test */
     public function it_should_return_a_variation_instance()
     {
-        $variation = Factory::create($this->namespaceProduct . '\Variation');
+        $variation = Factory::create('Variation');
         //var_dump($variation->toArray());
         $this->assertEquals($this->namespaceProduct . '\Variation',get_class($variation));
 
