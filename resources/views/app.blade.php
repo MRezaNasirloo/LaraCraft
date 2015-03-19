@@ -22,10 +22,18 @@
 
     @include('partials.nav')
 
-	@yield('content')
+    @if(Session::has('flash_message'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            {{ Session::get('flash_message') }}
+        </div>
+    @endif
+
+	@yield('content'){!! link_to_action('ProductController@create', 'List an Item') !!}
 
 	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="/js/all.js"></script>
+	{{--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>--}}
 </body>
 </html>
