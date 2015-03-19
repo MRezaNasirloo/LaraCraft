@@ -1,7 +1,12 @@
 <?php
+use App\Models\Product\Product;
+use Behat\Behat\Definition\Call\Then;
+use Behat\Behat\Definition\Call\When;
+use Behat\Behat\Tester\Exception\PendingException;
 use App\Models\User;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
 use Faker\Factory;
 use Faker\Generator;
@@ -101,5 +106,41 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             'slug'  =>  str_slug($name)//   produces => johns-shop
         ]);
         $user->shop()->save($shop);
+    }
+
+    /**
+     * @Given I am a shop owner with :email with :password and Shop name :name and logged in
+     */
+    public function iAmAShopOwnerWithWithAndShopNameAndLoggedIn($email, $password, $name)
+    {
+        $this->iAlreadyHaveAnAccountWith($email, $password);
+        $this->iAlreadyHaveLoggedInWith($email, $password);
+        $this->iAlreadyHaveOpenedAShopWithName($name);
+    }
+
+    /**
+     * @Given I already list an item with:
+     */
+    public function iAlreadyListAnItemWith(TableNode $fields)
+    {
+        foreach ($fields->getRowsHash() as $field => $value) {
+
+        }
+    }
+
+
+    /**
+     * @Given I list an item with :name and :description with my account :email
+     */
+    public function iListAnItemWithAndWithMyAccount($name, $description, $email)
+    {
+        $shop = User::whereEmail($email)->first()->shop()->first();
+        PHPUnit::assertNotNull($shop, "You have not opened a shop yet.");
+        $slug = str_slug($name, '-');
+        $product = new Product(['name' => $name, 'description' => $description, 'slug' => $slug]);
+        $shop->addProduct($product);
+        PHPUnit::assertEquals($shop->products()->first()->name, $name);
+
+
     }
 }

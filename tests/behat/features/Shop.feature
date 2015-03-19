@@ -51,3 +51,13 @@ Feature: Shop
     And I should not see "List a new Item"
 
 
+  Scenario: Shop owner is able to edit his products
+    Given I am a shop owner with "john@example.com" with 123456 and Shop name "John's Shop" and logged in
+    And I list an item with "John's Jeans" and "Some text for our dummy description" with my account "john@example.com"
+    And I am on the homepage
+    When I follow "John's Shop"
+    Then I should see "John's Jeans"
+    When I follow "Edit"
+    Then I should be on "product/Johns-Jeans"
+
+
