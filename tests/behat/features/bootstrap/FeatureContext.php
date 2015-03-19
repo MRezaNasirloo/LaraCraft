@@ -3,6 +3,8 @@ use App\Models\User;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\MinkExtension\Context\MinkContext;
+use Faker\Factory;
+use Faker\Generator;
 use Illuminate\Support\Facades\Hash;
 use Laracasts\Behat\Context\DatabaseTransactions;
 use PHPUnit_Framework_Assert as PHPUnit;
@@ -13,6 +15,20 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
 {
 
     use DatabaseTransactions;
+
+    /**
+     * @var Generator
+     */
+    private $faker;
+
+    /**
+     * Constructor for this Context
+     *
+     */
+    function __construct()
+    {
+        $this->faker = Factory::create();
+    }
 
     /**
      * @Then I should be able to do something with Laravel
@@ -71,5 +87,19 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             "email"     =>  $email,
             "password"  =>  $password
         ]), "There isn't any user with these credentials in database");
+    }
+
+    /**
+     * @Given I already have opened a shop with name :name
+     */
+    public function iAlreadyHaveOpenedAShopWithName($name)
+    {
+        $user = User::latest()->first();
+        $shop = new \App\Models\Shop([
+            'name'  =>  $name,
+            'description'   =>  $this->faker->sentence(),
+            'slug'  =>  str_slug($name)//   produces => johns-shop
+        ]);
+        $user->shop()->save($shop);
     }
 }
