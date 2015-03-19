@@ -50,5 +50,30 @@ class ShopTest extends DBTestCase {
 
     }
 
+    /** @test */
+    public function its_addProduct_method_adds_a_product_to_it()
+    {
+        $shop = Factory::create('Shop');
+        $product = Factory::create('Product');
+
+        $shop->addProduct($product);
+
+        $pro = $shop->products()->get()->first();
+
+        $this->assertEquals($product->name, $pro->name);
+
+    }
+
+    /** @test */
+    public function its_products_method_gets_all_of_its_products()
+    {
+        $shop = Factory::create('Shop');
+        $products = Factory::times(2)->create('Product', ['shop_id' => $shop->id]);
+
+        $products = $shop->products()->get()->all();
+
+        $this->assertContainsOnlyInstancesOf($this->namespaceProduct . '\IProduct', $products);
+
+    }
 
 }
