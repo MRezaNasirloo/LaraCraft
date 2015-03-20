@@ -88,9 +88,9 @@ class ProductController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(Product $product)
 	{
-		//
+		return view('product.show', compact('product'));
 	}
 
 	/**
@@ -99,9 +99,9 @@ class ProductController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Product $product)
 	{
-		//
+		return view('product.edit', compact('product'));
 	}
 
 	/**
@@ -110,9 +110,11 @@ class ProductController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Product $product)
 	{
-		//
+		$product->update(Input::all());
+        Session::flash('flash_message', 'Your Item has updated.');
+        return redirect('product/' . $product->slug);
 	}
 
 	/**

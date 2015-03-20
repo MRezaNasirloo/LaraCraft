@@ -12,6 +12,15 @@
                     <p>Shop Description: {{$shop->description}}</p>
 
                 </div>
+
+                <div>
+                    @foreach($shop->products()->get() as $product)
+                        <ul>
+                            {!! link_to_action('ProductController@show', $product->name, $product->slug) !!}
+                        </ul>
+                    @endforeach
+
+                </div>
             </div>
         </div>
 

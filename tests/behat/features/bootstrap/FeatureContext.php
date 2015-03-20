@@ -1,5 +1,6 @@
 <?php
 use App\Models\Product\Product;
+use App\Models\Shop;
 use Behat\Behat\Definition\Call\Then;
 use Behat\Behat\Definition\Call\When;
 use Behat\Behat\Tester\Exception\PendingException;
@@ -95,15 +96,17 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     }
 
     /**
+     * Open a shop for the latest registered User
+     *
      * @Given I already have opened a shop with name :name
      */
     public function iAlreadyHaveOpenedAShopWithName($name)
     {
-        $user = User::latest()->first();
-        $shop = new \App\Models\Shop([
+        $user = User::latest('id')->first();
+        $shop = new Shop([
             'name'  =>  $name,
             'description'   =>  $this->faker->sentence(),
-            'slug'  =>  str_slug($name)//   produces => johns-shop
+            'slug'  =>  str_slug($name)//   produces => johns-shop from John's Shop
         ]);
         $user->shop()->save($shop);
     }
@@ -114,18 +117,17 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     public function iAmAShopOwnerWithWithAndShopNameAndLoggedIn($email, $password, $name)
     {
         $this->iAlreadyHaveAnAccountWith($email, $password);
-        $this->iAlreadyHaveLoggedInWith($email, $password);
         $this->iAlreadyHaveOpenedAShopWithName($name);
+        $this->iAlreadyHaveLoggedInWith($email, $password);
     }
 
     /**
-     * @Given I already list an item with:
+     * @Given I am a shop owner with :email with :password and Shop name :name
      */
-    public function iAlreadyListAnItemWith(TableNode $fields)
+    public function iAmAShopOwnerWithWithAndShopName($email, $password, $name)
     {
-        foreach ($fields->getRowsHash() as $field => $value) {
-
-        }
+        $this->iAlreadyHaveAnAccountWith($email, $password);
+        $this->iAlreadyHaveOpenedAShopWithName($name);
     }
 
 

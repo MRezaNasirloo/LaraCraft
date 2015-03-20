@@ -29,7 +29,7 @@
         </div>
     @endif
 
-	@yield('content'){!! link_to_action('ProductController@create', 'List an Item') !!}
+	@yield('content')
 
 	<!-- Scripts -->
     <script src="/js/all.js"></script>
