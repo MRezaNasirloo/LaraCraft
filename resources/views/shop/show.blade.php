@@ -11,8 +11,22 @@
                 <div class="panel panel-default" style="padding: 30px;">
                     <p>Shop Description: {{$shop->description}}</p>
 
+                    {{--Edit this shop--}}
+                    <div>
+                        @if(Auth::user() == $shop->user()->first())
+                            {!! link_to_action('Shop\ShopController@edit', 'Edit', $shop->slug)!!}
+                        @endif
+                    </div>
+
+                    {{--Add a new product to this shop--}}
+                    <div style="margin-top: 20px">
+                        @if(Auth::user() == $shop->user()->first())
+                            {!! link_to_action('ProductController@create', 'List an Item') !!}
+                        @endif
+                    </div>
                 </div>
 
+                {{--This Shop products listings--}}
                 <div>
                     @foreach($shop->products()->get() as $product)
                         <ul>
@@ -23,9 +37,5 @@
                 </div>
             </div>
         </div>
-
-        <aside>
-            {!! link_to_action('ProductController@create', 'List an Item') !!}
-        </aside>
     </div>
 @endsection

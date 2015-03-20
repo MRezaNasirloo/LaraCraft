@@ -23,7 +23,7 @@ class ShopRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name'          =>  'required|unique:shops|min:3',
+			'name'          =>  'required|unique:shops,id,|min:3,'.$this->get('name'),
             'description'   =>  'required|min:10'
             //TODO: Add more rules...
 		];
