@@ -29,7 +29,9 @@ class RouteServiceProvider extends ServiceProvider {
 
         $this->bindModelField($router, 'shop', 'slug', 'App\Models\Shop');
 
-//		$router->model('shop', 'App\Models\Shop');//Laravel Old Bindings
+        $this->bindModelField($router, 'product', 'slug', 'App\Models\Product\Product');
+
+//		$this->model('shop', 'App\Models\Shop');//Laravel Old Bindings
 	}
 
 	/**

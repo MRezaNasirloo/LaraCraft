@@ -24,10 +24,13 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
-		'auth'          =>  'App\Http\Middleware\Authenticate',
-		'auth.basic'    =>  'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
-		'guest'         =>  'App\Http\Middleware\RedirectIfAuthenticated',
-        'shop'          =>  'App\Http\Middleware\RedirectIfHasShop',
+		'auth'           =>  'App\Http\Middleware\Authenticate',
+		'auth.basic'     =>  'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
+		'guest'          =>  'App\Http\Middleware\RedirectIfAuthenticated',
+        'shop'           =>  'App\Http\Middleware\RedirectIfHasShop',
+        'shop.hasNot'    =>  'App\Http\Middleware\RedirectIfHasNotShop',
+        'shop.product'   =>  'App\Http\Middleware\RedirectIfDoNotOwnProduct',
+        'shop.notOwn'    =>  'App\Http\Middleware\RedirectIfDoNotOwnShop'
 	];
 
 }

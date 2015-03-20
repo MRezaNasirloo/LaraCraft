@@ -1,7 +1,10 @@
 /vendor
 /node_modules
-.env.*
+.env*
 .idea
 storage/database.sqlite
+storage/acceptance.sqlite
 .DS_Store
 Thumbs.db
+
+

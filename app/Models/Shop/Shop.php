@@ -1,9 +1,10 @@
 <?php namespace App\Models;
 
+use App\Models\Product\IProduct;
 use Illuminate\Database\Eloquent\Model;
 use Psy\Test\CodeCleaner\AssignThisVariablePassTest;
 
-class Shop extends BaseModel {
+class Shop extends BaseModel implements IShop{
 
 	protected $table = 'shops';
 
@@ -35,4 +36,11 @@ class Shop extends BaseModel {
         return $this->hasMany($this->namespaceProduct . '\Product');
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function addProduct(IProduct $product)
+    {
+        $this->products()->save($product);
+    }
 }

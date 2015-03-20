@@ -2,8 +2,9 @@
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Routing\Middleware;
 
-class Authenticate {
+class Authenticate implements Middleware {
 
 	/**
 	 * The Guard implementation.
@@ -23,13 +24,9 @@ class Authenticate {
 		$this->auth = $auth;
 	}
 
-	/**
-	 * Handle an incoming request.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \Closure  $next
-	 * @return mixed
-	 */
+    /**
+     * @inheritdoc
+     */
 	public function handle($request, Closure $next)
 	{
 		if ($this->auth->guest())

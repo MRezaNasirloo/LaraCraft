@@ -1,9 +1,12 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Shop;
+use App\Models\User;
+use Illuminate\Auth\Guard;
 
-class ShopRequest extends Request {
+class ProductRequest extends Request {
+
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -23,7 +26,7 @@ class ShopRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name'          =>  'required|unique:shops,id,|min:3,'.$this->get('name'),
+            'name'          =>  'required|min:3',
             'description'   =>  'required|min:10'
             //TODO: Add more rules...
 		];

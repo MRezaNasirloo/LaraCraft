@@ -2,9 +2,10 @@
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Routing\Middleware;
 use Illuminate\Http\RedirectResponse;
 
-class RedirectIfAuthenticated {
+class RedirectIfAuthenticated implements Middleware {
 
 	/**
 	 * The Guard implementation.
@@ -24,13 +25,9 @@ class RedirectIfAuthenticated {
 		$this->auth = $auth;
 	}
 
-	/**
-	 * Handle an incoming request.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \Closure  $next
-	 * @return mixed
-	 */
+    /**
+     * @inheritdoc
+     */
 	public function handle($request, Closure $next)
 	{
 		if ($this->auth->check())
