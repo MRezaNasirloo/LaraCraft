@@ -4,7 +4,6 @@
     <div class="container">
         <div class="row">
 
-            @include('errors.list')
             <div class="col-md-10 col-md-offset-1">
                 <h1 id="h1">{!! link_to_action('Shop\ShopController@show', $product->shop()->first()->name, $product->shop()->first()->slug)!!}</h1>
                     <div class="panel panel-default" style="padding: 30px;">

@@ -8,6 +8,7 @@
     <div class="container">
         <h1>Edit</h1>
         <div class="col-md-6 col-md-offset-1">
+            @include('errors.list')
             {!! Form::model($product, ['method' => 'PATCH', 'action' => ['ProductController@update', $product->slug]]) !!}
             <div class="form-group">
                 {!! Form::label('name', 'Product\'s name:') !!}

@@ -2,19 +2,23 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\Http\Requests\ShopRequest;
 use App\Models\Shop;
 use Illuminate\Auth\Guard;
+use Illuminate\View\View;
 
 class ShopController extends Controller {
 
 
+    /**
+     * @var Guard
+     */
     protected $auth;
 
     /**
-     * Create a new ShopController instance
-     * and set middleware
+     * Constructs a ShopController instance
+     *
+     * @param Guard $auth
      */
     function __construct(Guard $auth)
     {
@@ -25,10 +29,10 @@ class ShopController extends Controller {
     }
 
     /**
-     * Show a list of All shop
+     * Show a list of All shops
      * TODO: Add pagination
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function index()
     {
@@ -46,17 +50,19 @@ class ShopController extends Controller {
     }
 
     /**
-     * Show the form for create a user shop
-     * @return \Illuminate\View\View
+     * Show the form for create a user Shop
+     *
+     * TODO: Adds steps for Creating shop
+     *
+     * @return View
      */
     public function create()
     {
-        //TODO: Adds steps for Creating shop
         return view('shop.create');
     }
 
     /**
-     * Save the user's shop into database
+     * Store the user's Shop
      *
      * @param ShopRequest $request
      * @return mixed
@@ -64,18 +70,20 @@ class ShopController extends Controller {
     public function store(ShopRequest $request)
     {
         $name = $request->get('name');
-        $slug = str_replace(' ', '-', $name);
+        $slug = str_slug($name);//TODO: Use a package for slugs
         $request['slug'] = $slug;
-        return $shop = $this->auth->user()->shop()->create($request->all());
+        $this->auth->user()->shop()->create($request->all());
+        return redirect('/shop/' . $slug);
     }
 
     /**
-     * Show the given slug shop
+     * Show the given Shop
+     *
+     * @param Shop $shop
+     * @return View
      */
     public function show(Shop $shop)
     {
-//        dd($shop);
-//        $shop = Shop::find(1);
         return view('shop.show', compact('shop'));
     }
 }

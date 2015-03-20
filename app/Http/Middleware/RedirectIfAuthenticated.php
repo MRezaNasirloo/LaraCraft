@@ -25,13 +25,9 @@ class RedirectIfAuthenticated implements Middleware {
 		$this->auth = $auth;
 	}
 
-	/**
-	 * Handle an incoming request.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \Closure  $next
-	 * @return mixed
-	 */
+    /**
+     * @inheritdoc
+     */
 	public function handle($request, Closure $next)
 	{
 		if ($this->auth->check())

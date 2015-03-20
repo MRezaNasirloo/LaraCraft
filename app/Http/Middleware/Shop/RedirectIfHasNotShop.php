@@ -7,13 +7,8 @@ use Illuminate\Http\Request;
 
 class RedirectIfHasNotShop implements Middleware{
 
-
     /**
-     * Handle an incoming request.
-     *
-     * @param  Request  $request
-     * @param  Closure  $next
-     * @return mixed
+     * @inheritdoc
      */
     public function handle($request, Closure $next)
     {

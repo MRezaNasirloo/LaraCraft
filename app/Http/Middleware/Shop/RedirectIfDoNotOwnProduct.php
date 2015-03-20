@@ -6,7 +6,7 @@ use Illuminate\Auth\Guard;
 use Illuminate\Contracts\Routing\Middleware;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class RedirectIfDoNotOwnProduct implements Middleware{
+class RedirectIfDoNotOwnProduct implements Middleware {
 
 
     /**
@@ -31,13 +31,12 @@ class RedirectIfDoNotOwnProduct implements Middleware{
     }
 
     /**
-	 * Handle an incoming request.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \Closure  $next
-	 * @return mixed
+	 * @inheritdoc
+     *
+     * TODO: Refactor to sign an interface contract
+     *
 	 */
-	public function handle($request, Closure $next)//TOdo: Refactor to sign an interface contract
+	public function handle($request, Closure $next)
 	{
         if($this->user) {
             $product = $request->route()->getParameter('product');

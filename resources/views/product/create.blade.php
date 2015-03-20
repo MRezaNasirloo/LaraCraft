@@ -8,6 +8,7 @@
     <div class="container">
         <h1>List a new Item</h1>
             <div class="col-md-6 col-md-offset-1">
+                @include('errors.list')
                 {!! Form::open(['url' => 'product']) !!}
                 <div class="form-group">
                     {!! Form::label('name', 'Product\'s name:') !!}

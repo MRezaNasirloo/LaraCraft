@@ -1,15 +1,13 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product\Product;
 use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Auth\Guard;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
 use Session;
 
 class ProductController extends Controller {
@@ -19,17 +17,22 @@ class ProductController extends Controller {
      * @var Guard
      */
     protected $auth;
+
     /**
      * @var Shop
      */
     protected $shop;
-    /**
-     * @var
-     */
-    private $user;
 
     /**
+     * @var User
+     */
+    protected $user;
+
+    /**
+     * Constructs a ProductController instance
+     *
      * @param Guard $auth
+     * @param Session $session
      */
     function __construct(Guard $auth)
     {
@@ -38,8 +41,8 @@ class ProductController extends Controller {
         $this->middleware('shop.hasNot', ['only' => ['create','edit','update', 'store']]);
 
         $this->auth = $auth;
-
         $this->user = $auth->user();
+
         if ($this->user) {
             $this->shop = $auth->user()->shop()->first();
         }
@@ -71,14 +74,16 @@ class ProductController extends Controller {
      *
      * @return Response
      */
-    public function store()
+    public function store(ProductRequest $request)
     {
-        $input = Input::all();
-        $name = Input::get('name');
-        $slug = str_slug($name, '-');
+        $input = $request->all();
+        $slug = str_slug($input['name']);
         $input['slug'] = $slug;
+
         $this->shop->addProduct(new Product($input));
-        Session::flash('flash_message', 'Your Item has added.');
+
+        session()->flash('flash_message', 'Your Item has added.');
+
         return redirect('/shop/' . $this->shop->slug);
 
     }
@@ -111,10 +116,12 @@ class ProductController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Product $product)
+	public function update(ProductRequest $request, Product $product)
 	{
-		$product->update(Input::all());
-        Session::flash('flash_message', 'Your Item has updated.');
+		$product->update($request->all());
+
+        session()->flash('flash_message', 'Your Item has updated.');
+
         return redirect('product/' . $product->slug);
 	}
 

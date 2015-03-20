@@ -18,9 +18,8 @@ Feature: Shop
       | description     | Some text for our dummy description |
     And I press "Open My Shop"
     Then I should not see any errors
-    Then I reload the page
     And I should see "John's Shop"
-    And I should be on "/shop/John's-Shop"
+    And I should be on "/shop/johns-shop"
 
   Scenario: List an Item
     Given I already have an account "john@example.com" with 123456
