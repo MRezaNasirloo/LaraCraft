@@ -36,4 +36,4 @@ Feature: Shop
     And I follow "John's Jeans"
     Then I should not see "Edit"
     When I go to "product/johns-jeans/edit"
-    Then I should be on "product/johns-jeans"
+    Then the response status code should be 404

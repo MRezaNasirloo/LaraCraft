@@ -13,7 +13,9 @@
                         <p>
                             {{$product->description}}
                         </p>
-                        {!! link_to_action('ProductController@edit', 'Edit', $product->slug)!!}
+                        @if(Auth::user() == $product->shop()->first()->user()->first())
+                            {!! link_to_action('ProductController@edit', 'Edit', $product->slug)!!}
+                        @endif
                     </div>
             </div>
         </div>

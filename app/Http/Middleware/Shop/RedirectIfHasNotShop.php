@@ -1,9 +1,11 @@
 <?php namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Contracts\Routing\Middleware;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class RedirectIfHasNotShop {
+class RedirectIfHasNotShop implements Middleware{
 
 
     /**

@@ -33,6 +33,7 @@ class ProductController extends Controller {
      */
     function __construct(Guard $auth)
     {
+        $this->middleware('shop.product',['only' => ['edit','update']]);
         $this->middleware('auth',        ['only' => ['create','edit','update', 'store']]);
         $this->middleware('shop.hasNot', ['only' => ['create','edit','update', 'store']]);
 
