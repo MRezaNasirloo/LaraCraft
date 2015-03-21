@@ -27,7 +27,7 @@ class ShopController extends Controller
     {
         $this->auth = $auth;
 
-        $this->middleware('shop.notOwn', ['only' => ['edit', 'update']]);
+        $this->middleware('owner',       ['only' => ['edit', 'update']]);
         $this->middleware('auth',        ['only' => ['create', 'edit', 'update', 'store']]);
         $this->middleware('shop',        ['only' => ['create', 'store']]);
     }
