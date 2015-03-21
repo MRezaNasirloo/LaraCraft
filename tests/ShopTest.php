@@ -7,6 +7,7 @@
  * Time: 1:02 PM
  */
 
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Laracasts\TestDummy\Factory;
 
@@ -74,6 +75,18 @@ class ShopTest extends DBTestCase {
 
         $this->assertContainsOnlyInstancesOf($this->namespaceProduct . '\IProduct', $products);
 
+    }
+
+    /** @test */
+    public function it_returns_its_owner()
+    {
+        $user = Factory::create('User');
+        $user = User::find($user->id);
+        $shop = Factory::create('Shop', ['user_id' => $user->id]);
+
+        $owner = $shop->owner();
+
+        $this->assertEquals($user, $owner);
     }
 
 }

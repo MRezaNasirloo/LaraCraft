@@ -1,10 +1,11 @@
 <?php namespace App\Models;
 
+use App\Models\Product\IOwner;
 use App\Models\Product\IProduct;
 use Illuminate\Database\Eloquent\Model;
 use Psy\Test\CodeCleaner\AssignThisVariablePassTest;
 
-class Shop extends BaseModel implements IShop{
+class Shop extends BaseModel implements IShop, IOwner{
 
 	protected $table = 'shops';
 
@@ -42,5 +43,15 @@ class Shop extends BaseModel implements IShop{
     public function addProduct(IProduct $product)
     {
         $this->products()->save($product);
+    }
+
+    /**
+     * Returns the owner of this Model
+     *
+     * @return User
+     */
+    public function owner()
+    {
+        return $this->user()->first();
     }
 }

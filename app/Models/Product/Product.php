@@ -1,8 +1,10 @@
 <?php namespace App\Models\Product;
 
 use App\Models\BaseModel;
+use App\Models\User;
+use DB;
 
-class Product extends BaseModel implements IProduct {
+class Product extends BaseModel implements IProduct, IOwner {
 
     /**
      * The database table used by the model.
@@ -102,4 +104,29 @@ class Product extends BaseModel implements IProduct {
         $this->variations()->save($variation);
     }
 
+    /**
+     * Returns the owner of this Model
+     *
+     * @return User
+     */
+    public function owner()
+    {
+       return $this->shop()->first()->user()->first();
+    }
+
+    /**
+     * Returns true if the current User owns this Model
+     *
+     * @return bool
+     */
+    /*public function isOwner()
+    {
+        if(\Auth::user() == $this->owner())
+            return true;
+        return false;
+    }*/
+
+
 }
+
+
