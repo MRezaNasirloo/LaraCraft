@@ -29,8 +29,6 @@ class Kernel extends HttpKernel {
 		'guest'          =>  'App\Http\Middleware\RedirectIfAuthenticated',
         'shop'           =>  'App\Http\Middleware\RedirectIfHasShop',
         'shop.hasNot'    =>  'App\Http\Middleware\RedirectIfHasNotShop',
-        'shop.product'   =>  'App\Http\Middleware\RedirectIfDoNotOwnProduct',
-        'shop.notOwn'    =>  'App\Http\Middleware\RedirectIfDoNotOwnShop',
         'owner'          =>  'App\Http\Middleware\Owner'
 	];
 
