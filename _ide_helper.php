@@ -8,7 +8,27 @@
  */
 
 namespace {
+    use Laracasts\Utilities\JavaScript\JavaScriptFacade;
+
     exit("This file should not be included, only analyzed by your IDE");
+
+    class JavaScript extends Laracasts\Utilities\JavaScript\JavaScriptFacade{
+        /**
+         * Bind the given array of variables to the view.
+         *
+         * @param array $variables
+         */
+        public static function put(array $variables){}
+
+        /**
+         * Translate the array of PHP vars to
+         * the expected JavaScript syntax.
+         *
+         * @param  array $vars
+         * @return array
+         */
+        public static function buildJavaScriptSyntax(array $vars){}
+    }
 
     class App extends \Illuminate\Support\Facades\App{
         

@@ -3,11 +3,13 @@
 use App\Http\Requests;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\Product\Option;
 use App\Models\Product\Product;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Response;
+use JavaScript;
 use Session;
 
 class ProductController extends Controller {
@@ -66,7 +68,25 @@ class ProductController extends Controller {
 	 */
 	public function create()
 	{
-		return view('product.create');
+        $rawOptions = Option::with('values')->get();
+
+        $options = [];
+        foreach($rawOptions as $option ){
+            $values = [];
+            foreach($option->values()->get() as $value){
+                $values =  array_add($values, $value->id , $value->value);
+            }
+//            dd($values);
+            $options =  array_add($options, $option->name, $values);
+
+        }
+
+//        dd($options);
+
+        JavaScript::put([
+            'options' => $options,
+        ]);
+		return view('product.create', compact('options'));
 	}
 
     /**
@@ -77,6 +97,7 @@ class ProductController extends Controller {
     public function store(ProductRequest $request)
     {
         $input = $request->all();
+        dd($input);
         $slug = str_slug($input['name']);
         $input['slug'] = $slug;
 

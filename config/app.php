@@ -137,6 +137,7 @@ return [
 		'Illuminate\View\ViewServiceProvider',
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
+        'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider',
 //        'App\Laracraft\SlugRoute\SlugRoutesServiceProvider',
 //        'App\Providers\SlugServiceProvider',
 
@@ -196,8 +197,8 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-        'Form'		=>	'Illuminate\Html\FormFacade',
-        'Html'		=>	'Illuminate\Html\HtmlFacade',
+        'Form'		=> 'Illuminate\Html\FormFacade',
+        'Html'		=> 'Illuminate\Html\HtmlFacade',
 	],
 
 ];
