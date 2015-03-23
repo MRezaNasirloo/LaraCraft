@@ -8,6 +8,7 @@ use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use Session;
 
 class ProductController extends Controller {
@@ -77,8 +78,9 @@ class ProductController extends Controller {
     public function store(ProductRequest $request)
     {
         $input = $request->all();
-        $slug = str_slug($input['name']);
-        $input['slug'] = $slug;
+//        $slug = Str::slug($input['name']);
+
+//        $input['slug'] = $slug;
 
         $this->shop->addProduct(new Product($input));
 

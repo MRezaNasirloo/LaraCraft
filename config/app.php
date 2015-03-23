@@ -137,6 +137,7 @@ return [
 		'Illuminate\View\ViewServiceProvider',
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
+        'Cviebrock\EloquentSluggable\SluggableServiceProvider',
 //        'App\Laracraft\SlugRoute\SlugRoutesServiceProvider',
 //        'App\Providers\SlugServiceProvider',
 
