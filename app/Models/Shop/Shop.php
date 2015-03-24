@@ -2,13 +2,38 @@
 
 use App\Models\Product\IOwner;
 use App\Models\Product\IProduct;
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Psy\Test\CodeCleaner\AssignThisVariablePassTest;
 
-class Shop extends BaseModel implements IShop, IOwner{
+class Shop extends BaseModel implements IShop, IOwner, SluggableInterface{
 
+    use SluggableTrait;
+
+
+    /**
+     * Config for slug
+     *
+     * @var array
+     */
+    protected $sluggable = [
+        'build_from' => 'name',
+        'save_to'    => 'slug',
+    ];
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
 	protected $table = 'shops';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
         'user_id',

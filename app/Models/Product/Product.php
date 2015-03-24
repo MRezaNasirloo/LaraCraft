@@ -2,9 +2,24 @@
 
 use App\Models\BaseModel;
 use App\Models\User;
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use DB;
 
-class Product extends BaseModel implements IProduct, IOwner {
+class Product extends BaseModel implements IProduct, IOwner, SluggableInterface {
+
+    use SluggableTrait;
+
+
+    /**
+     * Config for slug
+     *
+     * @var array
+     */
+    protected $sluggable = [
+        'build_from' => 'name',
+        'save_to'    => 'slug',
+    ];
 
     /**
      * The database table used by the model.

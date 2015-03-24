@@ -15,10 +15,11 @@ class ProductTableSeeder extends Seeder {
 
         $shopIds = Shop::lists('id');
 
-        foreach(range(1, 1000) as $index){
+        foreach(range(1, 500) as $index){
 
             Factory::create('Product', [
-                'shop_id' => $faker->randomElement($shopIds)
+                'shop_id' => $faker->randomElement($shopIds),
+                'photo_product' => $faker->imageUrl($width = 200, $height = 200, $faker->randomElement(['abstract','animals','business','cats','city','food','nightlife','fashion','people','nature','sports','technics','transport'])),
             ]);
         }
     }

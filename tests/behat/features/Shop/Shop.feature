@@ -27,7 +27,7 @@ Feature: Shop
     And I already have opened a shop with name "John's Shop"
     And I am on the homepage
     When I follow "John's Shop"
-    Then I should be on "/shop/johns-shop"
+    Then I should be on "/shop/john-s-shop"
     When I follow "List an Item"
     Then I should be on "/product/create"
     And I should see "List a new Item"
@@ -37,7 +37,7 @@ Feature: Shop
     And I press "Add this Item"
     Then I should not see any errors
     And I should see "Your Item has added."
-    And I should be on "/shop/johns-shop"
+    And I should be on "/shop/john-s-shop"
 
 
   Scenario: User without a Shop

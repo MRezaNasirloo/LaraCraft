@@ -106,7 +106,6 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         $shop = new Shop([
             'name'  =>  $name,
             'description'   =>  $this->faker->sentence(),
-            'slug'  =>  str_slug($name)//   produces => johns-shop from John's Shop
         ]);
         $user->shop()->save($shop);
     }
@@ -138,10 +137,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     {
         $shop = User::whereEmail($email)->first()->shop()->first();
         PHPUnit::assertNotNull($shop, "You have not opened a shop yet.");
-        $slug = str_slug($name, '-');
-        $product = new Product(['name' => $name, 'description' => $description, 'slug' => $slug]);
+        $product = new Product(['name' => $name, 'description' => $description]);
         $shop->addProduct($product);
-        PHPUnit::assertEquals($shop->products()->first()->name, $name);
+        PHPUnit::assertEquals($shop->products()->whereName($name)->first()->name, $name);
 
 
     }

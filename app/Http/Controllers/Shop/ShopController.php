@@ -17,39 +17,37 @@ class ShopController extends Controller
      * @var Guard
      */
     protected $auth;
+    /**
+     * @var Shop
+     */
+    private $shop;
 
     /**
      * Constructs a ShopController instance
      *
      * @param Guard $auth
+     * @param Shop $shop
      */
-    function __construct(Guard $auth)
+    function __construct(Guard $auth, Shop $shop)
     {
         $this->auth = $auth;
 
         $this->middleware('owner',       ['only' => ['edit', 'update']]);
         $this->middleware('auth',        ['only' => ['create', 'edit', 'update', 'store']]);
         $this->middleware('shop',        ['only' => ['create', 'store']]);
+        $this->shop = $shop;
     }
 
     /**
      * Show a list of All shops
-     * TODO: Add pagination
+     * TODO: Add Sort
      *
      * @return View
      */
     public function index()
     {
-        if (isset($_GET['order'])) {//TODO: refactor this shit :/
-            $order = $_GET['order'];
-            if ($order === 'most_recent') {
-                $shops = Shop::with('user')->latest()->get();
-            } else {
-                $shops = Shop::with('user')->get();
-            }
-        } else {
-            $shops = Shop::with('user')->get();
-        }
+        $shops = $this->shop->paginate(10);
+
         return view('shop.index', compact('shops'));
     }
 

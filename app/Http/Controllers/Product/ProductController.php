@@ -10,7 +10,6 @@ use App\Models\User;
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Response;
 use JavaScript;
-use Session;
 
 class ProductController extends Controller {
 
@@ -19,24 +18,26 @@ class ProductController extends Controller {
      * @var Guard
      */
     protected $auth;
-
     /**
      * @var Shop
      */
     protected $shop;
-
     /**
      * @var User
      */
     protected $user;
+    /**
+     * @var Product
+     */
+    private $product;
 
     /**
      * Constructs a ProductController instance
      *
      * @param Guard $auth
-     * @param Session $session
+     * @param Product $product
      */
-    function __construct(Guard $auth)
+    function __construct(Guard $auth, Product $product)
     {
         $this->middleware('owner',       ['only' => ['edit','update']]);
         $this->middleware('auth',        ['only' => ['create','edit','update', 'store']]);
@@ -48,6 +49,7 @@ class ProductController extends Controller {
         if ($this->user) {
             $this->shop = $auth->user()->shop()->first();
         }
+        $this->product = $product;
     }
 
 
@@ -58,7 +60,9 @@ class ProductController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $products = $this->product->paginate(28);
+
+        return view('product.index', compact('products'));
 	}
 
 	/**
@@ -98,8 +102,6 @@ class ProductController extends Controller {
     {
         $input = $request->all();
         dd($input);
-        $slug = str_slug($input['name']);
-        $input['slug'] = $slug;
 
         $this->shop->addProduct(new Product($input));
 

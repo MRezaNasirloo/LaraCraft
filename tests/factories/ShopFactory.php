@@ -10,7 +10,7 @@ $factory('App\Models\Shop', 'Shop', [
     'name'          => $faker->word,
     'user_id'       => 'factory:User',
     'slug'          => $faker->slug,
-    'image_banner'  => $faker->imageUrl($width = 640, $height = 480),
+    'image_banner'  => $faker->imageUrl($width = 600, $height = 200),
     'description'   => $faker->sentence
 ]);
 
@@ -24,6 +24,6 @@ $factory('App\Models\Product\Product', 'Product', [
     'shop_id'       =>  'factory:Shop',
     'name'          =>  $faker->word,
     'slug'          =>  $faker->slug,
-    'photo_product' =>  $faker->imageUrl($width = rand(), $height = rand()),
+    'photo_product' =>  $faker->imageUrl($width = 200, $height = 200),
     'description'   =>  $faker->paragraphs($nb = 3)
 ]);
