@@ -1,23 +1,43 @@
-## Laravel PHP Framework
+## LaraCraft E-Commerce App
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+LaraCraft is a e-commerce web shop built with Laravel 5
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+### How to use
+1. Clone the repository and checkout to develop branch
 
-## Official Documentation
+2. Create a file in the storage directory **storage/database.sqlite**
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+3. Create a file in the root called **.env**
 
-## Contributing
+ 1. Copy and paste these line into it
+    
+    ```APP_ENV=local
+    APP_DEBUG=true
+    APP_KEY=iauLKL36BzTCOKy0SCZ8ETIXuAWT5G0d
+    DB_HOST=localhost
+    DB_DATABASE=database.sqlite
+    
+4. Run these command in the root of project directory
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+    1. `composer install`
+    2. ```php artisan migrate:install```
+    3. `php artisan migrate`
+    4. `php artisan db:seed`
+    5. `php artisan serve`
+    
+    
+### Contributing
 
-### License
+For contributing always create your branch an before pushing it run all the test to make sure you didn't break anything
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+In project root directory run these commands
+
+1. ```vendor/bin/phpunit```
+2. ```vendor/bin/behat```
+
+#### License
+
+The LaraCraft is a closed-source software owned by MohammadReza Nasirloo (mamareza.mrn@gmail.com)  &copy; 2015
+
+Any use of this software without owner permission is not allowed.
