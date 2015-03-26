@@ -138,9 +138,7 @@ return [
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
-//        'App\Laracraft\SlugRoute\SlugRoutesServiceProvider',
-//        'App\Providers\SlugServiceProvider',
-
+        'Barryvdh\Debugbar\ServiceProvider',
 		/*
 		 * Application Service Providers...
 		 */
@@ -197,8 +195,9 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-        'Form'		=>	'Illuminate\Html\FormFacade',
-        'Html'		=>	'Illuminate\Html\HtmlFacade',
+        'Form'		=> 'Illuminate\Html\FormFacade',
+        'Html'		=> 'Illuminate\Html\HtmlFacade',
+        'Debugbar'  => 'Barryvdh\Debugbar\Facade',
 	],
 
 ];
