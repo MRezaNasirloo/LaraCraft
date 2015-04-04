@@ -10,7 +10,7 @@
                 <div class="panel panel-default" style="padding: 30px;">
 
                         <div class="col-lg-4 container">
-                            <img src={{ $product->photo_product }}>
+                            <img src={{ asset($product->photos()->first()->thumb) }}>
                         </div>
 
                     <div class="row">
