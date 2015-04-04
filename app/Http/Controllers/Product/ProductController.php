@@ -3,6 +3,7 @@
 use App\Http\Requests;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\Photo;
 use App\Models\Product\Product;
 use App\Models\Shop;
 use App\Models\User;
@@ -81,11 +82,12 @@ class ProductController extends Controller {
     public function store(ProductRequest $request)
     {
         $input = $request->all();
-//        $slug = Str::slug($input['name']);
 
-//        $input['slug'] = $slug;
+        $product = new Product($input);
+        $this->shop->addProduct($product);
 
-        $this->shop->addProduct(new Product($input));
+        $photos = Photo::whereIn('id', $input['image_ids'])->get()->all();
+        $product->photos()->saveMany($photos);
 
         session()->flash('flash_message', 'Your Item has added.');
 

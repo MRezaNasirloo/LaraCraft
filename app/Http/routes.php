@@ -27,6 +27,11 @@ Route::resource('shop', 'Shop\ShopController');
 Route::resource('product', 'ProductController');
 
 /**
+ * Photo routes
+ */
+Route::resource('photo', 'PhotoController');
+
+/**
  * User routes
  */
 Route::controllers([

@@ -129,6 +129,11 @@ class Product extends BaseModel implements IProduct, IOwner, SluggableInterface 
        return $this->shop()->first()->user()->first();
     }
 
+    public function photos()
+    {
+        return $this->morphMany($this->namespaceModels . '\Photo', 'imageable');
+    }
+
     /**
      * Returns true if the current User owns this Model
      *
