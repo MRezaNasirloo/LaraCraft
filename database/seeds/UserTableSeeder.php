@@ -9,7 +9,7 @@ class UserTableSeeder extends \Illuminate\Database\Seeder {
 
         $faker = \Faker\Factory::create();
 
-        foreach(range(1, 100) as $index){
+        foreach(range(1, 50) as $index){
             Factory::create('User', [
                 'password' => Hash::make('111111')
             ]);

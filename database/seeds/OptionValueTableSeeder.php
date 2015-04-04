@@ -10,7 +10,7 @@ class OptionValueTableSeeder extends \Illuminate\Database\Seeder {
         $faker = \Faker\Factory::create();
         $optionIds = \App\Models\Product\Option::lists('id');
 
-        foreach(range(1, 50) as $index){
+        foreach(range(1, 25) as $index){
             Factory::create('OptionValue', [
                 'option_id' => $faker->randomElement($optionIds)
             ]);
