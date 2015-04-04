@@ -12,7 +12,7 @@ class ImageTest extends DBTestCase {
     const DS = DIRECTORY_SEPARATOR;
 
 
-    /** @test */
+
     public function it_should_have_type_of_image()
     {
         $image = new Image(new UploadedFile(base_path() . $this->filePath , $this->fileName));
