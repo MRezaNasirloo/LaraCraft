@@ -19,6 +19,8 @@ class Photo extends BaseModel {
      * @var array
      */
     protected $fillable = [
+        'imageable_type',
+        'imageable_id',
         'untouched',
         'medium',
         'thumb',

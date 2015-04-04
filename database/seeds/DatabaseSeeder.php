@@ -11,7 +11,8 @@ class DatabaseSeeder extends Seeder {
         'shops',
         'products',
         'options',
-        'values'
+        'values',
+        'photos'
 
     ];
 
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder {
 		 $this->call('ProductTableSeeder');
 		 $this->call('OptionTableSeeder');
 		 $this->call('OptionValueTableSeeder');
+		 $this->call('PhotoTableSeeder');
 	}
 
     private function cleanDatabase()

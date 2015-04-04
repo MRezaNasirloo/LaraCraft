@@ -19,7 +19,6 @@ class ProductTableSeeder extends Seeder {
 
             Factory::create('Product', [
                 'shop_id' => $faker->randomElement($shopIds),
-                'photo_product' => $faker->imageUrl($width = 200, $height = 200, $faker->randomElement(['abstract','animals','business','cats','city','food','nightlife','fashion','people','nature','sports','technics','transport'])),
             ]);
         }
     }
