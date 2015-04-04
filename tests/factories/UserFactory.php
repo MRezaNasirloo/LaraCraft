@@ -11,12 +11,3 @@ $factory('App\Models\User', 'User', [
     'email'     => $faker->freeEmail,
     'password'  => $faker->word
 ]);
-
-
-$factory('App\Models\Shop', 'Shop', [
-    'name'          => $faker->word,
-    'user_id'       => 'factory:User',
-    'slug'          => $faker->slug,
-    'image_banner'  => $faker->imageUrl($width = 640, $height = 480),
-    'description'   => $faker->sentence
-]);

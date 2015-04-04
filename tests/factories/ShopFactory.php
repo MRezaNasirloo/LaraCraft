@@ -13,17 +13,3 @@ $factory('App\Models\Shop', 'Shop', [
     'image_banner'  => $faker->imageUrl($width = 600, $height = 200),
     'description'   => $faker->sentence
 ]);
-
-$factory('App\Models\User', 'User', [
-    'name'      => $faker->name,
-    'email'     => $faker->freeEmail,
-    'password'  => $faker->word
-]);
-
-$factory('App\Models\Product\Product', 'Product', [
-    'shop_id'       =>  'factory:Shop',
-    'name'          =>  $faker->word,
-    'slug'          =>  $faker->slug,
-    'photo_product' =>  $faker->imageUrl($width = 200, $height = 200),
-    'description'   =>  $faker->paragraphs($nb = 3)
-]);

@@ -10,7 +10,6 @@ $factory('App\Models\Product\Product', 'Product', [
     'shop_id'       =>  'factory:Shop',
     'name'          =>  $faker->word,
     'slug'          =>  $faker->slug,
-    'photo_product' =>  $faker->imageUrl($width = 200, $height = 400),
     'description'   =>  $faker->paragraphs($nb = 3)
 ]);
 
