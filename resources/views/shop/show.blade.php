@@ -32,11 +32,11 @@
 
                 {{--This Shop products listings--}}
                 <div>
-                    @foreach($shop->products()->get() as $product)
+                    @foreach($shop->products()->with('photos')->get() as $product)
                         <div class="col-xs-18 col-sm-4 col-md-3">
                             <div class="product productbox">
                                 <div class="imgthumb img-responsive">
-                                    <img src={{ asset($product->photos()->first()->thumb) }}>
+                                    <img src={{ asset($product->photos->first()->thumb) }}>
                                 </div>
                                 <div class="caption">
                                     <h5>
