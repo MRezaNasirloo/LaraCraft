@@ -11,5 +11,5 @@
             <span>Add Photos</span>
         </div>
     </a>
-    <input type="file" name="image" style="display:none;"/>
+    <input type="file" name="image"/>
 </div>
