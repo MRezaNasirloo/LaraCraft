@@ -32,17 +32,17 @@
 
                 {{--This Shop products listings--}}
                 <div>
-                    @foreach($shop->products()->get() as $product)
+                    @foreach($shop->products()->with('photos')->get() as $product)
                         <div class="col-xs-18 col-sm-4 col-md-3">
                             <div class="product productbox">
                                 <div class="imgthumb img-responsive">
-                                    <img src={{ $product->photo_product }}>
+                                    <img src={{ asset($product->photos->first()->thumb) }}>
                                 </div>
                                 <div class="caption">
                                     <h5>
                                         {!!link_to_action('ProductController@show', $product->name, $product->slug )!!}
                                     </h5>
-                                    <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
+                                    <a class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a class="btn btn-info btn-xs" role="button">Button</a> <a class="btn btn-default btn-xs" role="button">Button</a>
                                 </div>
                             </div>
                         </div>

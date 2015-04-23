@@ -13,7 +13,7 @@ class ShopTableSeeder extends \Illuminate\Database\Seeder {
 
         $userIds = User::lists('id');
 
-        foreach(range(1, 50) as $index){
+        foreach(range(1, 25) as $index){
 
             $userId = $faker->randomElement($userIds);
 

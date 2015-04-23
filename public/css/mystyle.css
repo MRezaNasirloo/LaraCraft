@@ -1,0 +1,47 @@
+.add-photos-button .button-add{
+    margin:-4px auto 3px;
+}
+.add-photos-button{
+    background:#F5F5F1;
+    width: 100%;
+    height: 100%;
+    display:block;
+    text-transform:uppercase;
+    font-size:10px;
+    font-weight:bold;
+    text-align:center;
+    text-decoration:none;
+    color:#0192B5;
+    z-index:0;
+}
+
+.upload-container{
+    background:#F5F5F1;
+    width: 160px;
+    height: 60px;
+    top:5px;
+    text-align:left;
+    cursor:pointer;
+}
+.photo_upload_row{
+    margin-left: 0px;
+}
+
+li.image-box a.remove{
+    cursor:pointer;
+    position:absolute;
+    top:7px;
+    right: 8px;
+    text-decoration: none;
+}
+
+
+li.image-box a.preview{
+    cursor:pointer;
+    position:absolute;
+    /*width:16px;*/
+    /*height:16px;*/
+    top:7px;
+    left: 8px;
+    text-decoration: none;
+}

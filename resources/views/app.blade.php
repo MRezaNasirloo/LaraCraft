@@ -7,6 +7,9 @@
 	<title>Laravel</title>
 
 	<link href="/css/app.css" rel="stylesheet">
+	<link href="/css/mystyle.css" rel="stylesheet">
+
+    @yield('style')
 
 	<!-- Fonts -->
 	{{--<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>--}}
@@ -33,6 +36,8 @@
 
 	<!-- Scripts -->
     <script src="/js/all.js"></script>
+
+    @yield('script')
 	{{--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>--}}
 </body>

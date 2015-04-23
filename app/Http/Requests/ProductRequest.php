@@ -27,7 +27,8 @@ class ProductRequest extends Request {
 	{
 		return [
             'name'          =>  'required|min:3',
-            'description'   =>  'required|min:10'
+            'description'   =>  'required|min:10',
+            'image_ids'     =>  'required'
             //TODO: Add more rules...
 		];
 	}

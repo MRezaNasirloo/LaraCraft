@@ -13,5 +13,11 @@ default:
           Behat\MinkExtension:
               default_session: laravel
               laravel: ~
+              javascript_session: selenium2
+              base_url: http://localhost:8000
+              selenium2:
+                  wd_host: "http://127.0.0.1:4444/wd/hub"
+              selenium2: ~
+              files_path: '.\public\images'
 
 #%paths.base%

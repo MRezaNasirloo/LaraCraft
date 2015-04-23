@@ -143,4 +143,14 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
 
 
     }
+
+    /**
+     * @Then I wait a second
+     */
+    public function iWaitASecond()
+    {
+        $this->getSession()->wait(1500,
+            "$('.suggestions-results').children().length > 0"
+        );
+    }
 }
