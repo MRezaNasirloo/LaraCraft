@@ -32,6 +32,12 @@ Route::resource('product', 'ProductController');
 Route::resource('photo', 'PhotoController');
 
 /**
+ * Category routes
+ */
+Route::resource('category', 'CategoryController');
+Route::get('category/children/{id}', 'CategoryController@getChildren');
+
+/**
  * User routes
  */
 Route::controllers([
