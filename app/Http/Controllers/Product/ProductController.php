@@ -3,6 +3,7 @@
 use App\Http\Requests;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\Category;
 use App\Models\Photo;
 use App\Models\Product\Product;
 use App\Models\Shop;
@@ -88,6 +89,9 @@ class ProductController extends Controller {
 
         $photos = Photo::whereIn('id', $input['image_ids'])->get()->all();
         $product->photos()->saveMany($photos);
+
+        $category = Category::find($input['category'])->first();
+        $category->products()->save($product);
 
         session()->flash('flash_message', 'Your Item has added.');
 

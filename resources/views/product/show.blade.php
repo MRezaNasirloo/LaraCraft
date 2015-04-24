@@ -20,6 +20,11 @@
                             <p>
                                 {{$product->description}}
                             </p>
+                            <p><b>Category: </b>
+                                @if($category = $product->category()->first())
+                                    {{$category->name}}
+                                @endif
+                            </p>
                         </div>
 
                     </div>

@@ -18,7 +18,11 @@
                 {!! Form::text('description', null,['class' => 'form-control', 'placeholder' => 'Describe your product']) !!}
             </div>
 
-            <select name="image_ids[]" hidden="hidden" multiple="multiple">
+            <select class="image_id" name="image_ids[]" hidden="hidden" multiple="multiple">
+                <option value=""></option>
+            </select>
+
+            <select class="category_id" name="category" hidden="hidden">
                 <option value=""></option>
             </select>
 
@@ -36,17 +40,58 @@
 
             {!! Form::close() !!}
 
+            {!! Form::select('category', \App\Models\Category::roots()->lists('name', 'id'), '<option value="" selected>None<option value="" disabled>Select your Category</option>', ['class' => 'form-control category']) !!}
+
         </div>
     </div>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
+    <div><br></div>
 @endsection
 
 @section('script')
     <script>
         $(document).ready(function () {
+            //Gets the selected Categories children.
+            $('body').on('change', 'select.category', function(){
+                console.log('Changed!!');
+                console.log($(this).val());
+                $('form select.category_id').children('option').remove();
+                $('<option>')
+                        .attr('value', $(this).val())
+                        .attr('selected', 'selected')
+                        .appendTo('form select.category_id');
+
+                var id = $(this).val();
+                var select = $(this);
+                $.ajax({
+                    url: '/category/children/' + id,
+                    type: 'GET',
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        console.log('GET successfully.');
+                        console.log(data);
+                        $(select.nextAll('.category')).remove();
+                        if(data.length == 0) return;
+                        $(select.parent()).append( $('<select class="form-control category"><option value="" selected>None<option value="" disabled>Select your Category</option></select>'));
+                        $.each(data, function(index, element){
+                            $(select.next('.category')).append( $('<option></option>').val(element['id']).html(element['name']) )
+                        });
+                    }
+                });
+            });
+            //Clicks the file input.
             $('.thumbnail a').on('click', function (e) {
                 console.log('input clicked!!');
                 $(this).siblings('input').click();
             });
+            //Uploads selected file to server
             $('input[name=image]').change(function () {
                 console.log('changed!!');
                 var input = $(this);
@@ -66,10 +111,10 @@
                         $('<option>')
                                 .attr('value', data['id'])
                                 .attr('selected', 'selected')
-                                .appendTo('form select');
+                                .appendTo('form select.image_id');
                     }
                 });
-            })
+            });
 
         });
     </script>

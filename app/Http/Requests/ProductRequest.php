@@ -26,9 +26,10 @@ class ProductRequest extends Request {
 	public function rules()
 	{
 		return [
-            'name'          =>  'required|min:3',
+            'name'          =>  'required|min:3|max:128',
             'description'   =>  'required|min:10',
-            'image_ids'     =>  'required'
+            'image_ids'     =>  'required',
+            'category'      =>  'required'
             //TODO: Add more rules...
 		];
 	}
