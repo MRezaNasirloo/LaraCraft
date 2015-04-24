@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder {
 		 $this->call('OptionTableSeeder');
 		 $this->call('OptionValueTableSeeder');
 		 $this->call('PhotoTableSeeder');
+		 $this->call('CategoryTableSeeder');
 	}
 
     private function cleanDatabase()

@@ -44,3 +44,7 @@ $factory('App\Models\Product\ProductOptionValue', 'ProductOptionValue', [
     'product_option_id'    => 'factory:ProductOption',
     'value_id'    => 'factory:OptionValue',
 ]);
+
+$factory('App\Models\Category', 'Category', [
+    'name'    => $faker->word
+]);
