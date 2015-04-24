@@ -2,6 +2,7 @@
 
 
 use Baum\Node;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Node {
 
@@ -22,7 +23,7 @@ class Category extends Node {
     /**
      * Returns the associated Products to this Category
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function products()
     {

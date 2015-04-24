@@ -5,6 +5,7 @@ use App\Models\User;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use DB;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends BaseModel implements IProduct, IOwner, SluggableInterface {
 
@@ -132,6 +133,16 @@ class Product extends BaseModel implements IProduct, IOwner, SluggableInterface 
     public function photos()
     {
         return $this->morphMany($this->namespaceModels . '\Photo', 'imageable');
+    }
+
+    /**
+     * Returns the associated Category to this Product.
+     *
+     * @return BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo($this->namespaceModels . '\Category');
     }
 
     /**

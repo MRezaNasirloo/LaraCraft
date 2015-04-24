@@ -1,5 +1,6 @@
 <?php namespace Tests;
 
+use App\Models\Category;
 use App\Models\Product\Option;
 
 use App\Models\User;
@@ -88,6 +89,20 @@ class ProductTest extends DBTestCase {
         $owner = $product->owner();
 
         $this->assertEquals($user, $owner);
+    }
+
+    /** @test */
+    public function it_belongs_to_a_category()
+    {
+        $product = Factory::create('Product');
+
+        $root = Category::create(['name' => 'Root category']);
+
+        $root->products()->save($product);
+
+        $category = $product->category()->first();
+
+        $this->assertEquals($root->name, $category->name);
     }
 
     /** @test */
