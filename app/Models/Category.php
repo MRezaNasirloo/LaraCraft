@@ -19,7 +19,9 @@ class Category extends Node {
      */
     protected $orderColumn = null;
 
-
-
+    public function products()
+    {
+        return $this->hasMany('App\Models\Product\Product');
+    }
 
 }
