@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration {
 			$table->increments('id');
             $table->unsignedInteger('shop_id')->index();
             $table->unsignedInteger('category_id')->nullable();
-            $table->string('name',32);
+            $table->string('name',128);
             $table->string('slug');
             $table->text('description')->nullable();
             $table->timestamps();
@@ -27,6 +27,11 @@ class CreateProductsTable extends Migration {
                 ->references('id')
                 ->on('shops')
                 ->onDelete('cascade');
+
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('no action');//TODO: Or set null
 
 		});
 	}

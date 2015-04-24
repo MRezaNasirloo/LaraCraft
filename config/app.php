@@ -140,6 +140,7 @@ return [
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
         'Intervention\Image\ImageServiceProvider',
+        'Baum\Providers\BaumServiceProvider',
 		/*
 		 * Application Service Providers...
 		 */
