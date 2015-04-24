@@ -15,10 +15,15 @@ class Category extends Node {
     /**
      * Column to perform the default sorting
      *
-     * @var string
+     * @var String
      */
     protected $orderColumn = null;
 
+    /**
+     * Returns the associated Products to this Category
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function products()
     {
         return $this->hasMany('App\Models\Product\Product');
