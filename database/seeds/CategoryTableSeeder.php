@@ -46,13 +46,62 @@ class CategoryTableSeeder extends \Illuminate\Database\Seeder {
                 ['name' => 'Sunglasses & Eyewear'],
                 ['name' => 'Umbrellas & Rain Accessories']
             ]],
-            ['name' => 'Art & Collectibles'],
-            ['name' => 'Bags & Purses'],
-            ['name' => 'Bath & Beauty'],
-            ['name' => 'Books, Movies & Music'],
-            ['name' => 'Clothing'],
-            ['name' => 'Craft Supplies & Tools'],
-            ['name' => 'Electronics & Accessories'],
+            ['name' => 'Art & Collectibles', 'children' => [
+                ['name' => 'foo'],
+                ['name' => 'bar'],
+                ['name' => 'baz'],
+                ['name' => 'foo & bar', 'children' => [
+                    ['name' => 'bar'],
+                    ['name' => 'baz'],
+                ]]]],
+            ['name' => 'Bags & Purses', 'children' => [
+                ['name' => 'foo'],
+                ['name' => 'bar'],
+                ['name' => 'baz'],
+                ['name' => 'foo & bar', 'children' => [
+                    ['name' => 'bar'],
+                    ['name' => 'baz'],
+                ]]]],
+            ['name' => 'Bath & Beauty', 'children' => [
+                ['name' => 'foo'],
+                ['name' => 'bar'],
+                ['name' => 'baz'],
+                ['name' => 'foo & bar', 'children' => [
+                    ['name' => 'bar'],
+                    ['name' => 'baz'],
+                ]]]],
+            ['name' => 'Books, Movies & Music', 'children' => [
+                ['name' => 'foo'],
+                ['name' => 'bar'],
+                ['name' => 'baz'],
+                ['name' => 'foo & bar', 'children' => [
+                    ['name' => 'bar'],
+                    ['name' => 'baz'],
+                ]]]],
+            ['name' => 'Clothing', 'children' => [
+                ['name' => 'foo'],
+                ['name' => 'bar'],
+                ['name' => 'baz'],
+                ['name' => 'foo & bar', 'children' => [
+                    ['name' => 'bar'],
+                    ['name' => 'baz'],
+                ]]]],
+            ['name' => 'Craft Supplies & Tools', 'children' => [
+                ['name' => 'foo'],
+                ['name' => 'bar'],
+                ['name' => 'baz'],
+                ['name' => 'foo & bar', 'children' => [
+                    ['name' => 'bar'],
+                    ['name' => 'baz'],
+                ]]]],
+            ['name' => 'Electronics & Accessories', 'children' => [
+                ['name' => 'foo'],
+                ['name' => 'bar'],
+                ['name' => 'baz'],
+                ['name' => 'foo & bar', 'children' => [
+                    ['name' => 'bar'],
+                    ['name' => 'baz'],
+                ]]]],
             ['name' => 'Home & Living'],
             ['name' => 'Jewelry'],
             ['name' => 'Paper & Party Supplies'],
