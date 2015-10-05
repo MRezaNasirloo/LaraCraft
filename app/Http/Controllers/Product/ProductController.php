@@ -99,34 +99,38 @@ class ProductController extends Controller {
 
     }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Display the specified resource.
+     *
+     * @param Product $product
+     * @return Response
+     * @internal param int $id
+     */
 	public function show(Product $product)
 	{
 		return view('product.show', compact('product'));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Product $product
+     * @return Response
+     * @internal param int $id
+     */
 	public function edit(Product $product)
 	{
 		return view('product.edit', compact('product'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param ProductRequest $request
+     * @param Product $product
+     * @return Response
+     * @internal param int $id
+     */
 	public function update(ProductRequest $request, Product $product)
 	{
 		$product->update($request->all());

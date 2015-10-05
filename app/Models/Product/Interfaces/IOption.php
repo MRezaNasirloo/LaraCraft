@@ -52,7 +52,9 @@ interface IOption {
     /**
      * Removes the given option value.
      *
-     * @param IOptionValue $optionValue
+     * @param IOptionValue $value
+     * @return
+     * @internal param IOptionValue $optionValue
      */
     public function removeValue(IOptionValue $value);
 

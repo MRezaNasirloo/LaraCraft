@@ -54,8 +54,8 @@ class Photo extends BaseModel {
 
     /**
      * Put the file into the FileSystem
-     *
      * @return mixed
+     * @throws \Exception
      */
     public function put()
     {

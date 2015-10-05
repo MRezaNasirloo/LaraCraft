@@ -50,6 +50,8 @@ interface IProduct {
 
     /**
      * Adds a Variation for to this {@link App\Models\Product\Product}
+     * @param IVariation $variation
+     * @return
      */
     public function addVariation(IVariation $variation);
 
@@ -63,7 +65,9 @@ interface IProduct {
     /**
      * Associate Options to this {@link App\Models\Product\Product}
      *
-     * @param array IOption $option
+     * @param $options
+     * @return
+     * @internal param IOption $array $option
      */
     public function addOptions($options);
 

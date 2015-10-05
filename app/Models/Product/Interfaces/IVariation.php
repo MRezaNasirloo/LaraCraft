@@ -58,7 +58,9 @@ interface IVariation {
     /**
      * Adds IOptionValues associated with this Variation
      *
-     * @param array IOptionValue $optionValue
+     * @param $optionValues
+     * @return
+     * @internal param IOptionValue $array $optionValue
      */
     public function addOptionValues($optionValues);
 
