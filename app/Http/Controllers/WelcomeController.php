@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use Illuminate\Http\Response;
+
 class WelcomeController extends Controller {
 
 	/*
