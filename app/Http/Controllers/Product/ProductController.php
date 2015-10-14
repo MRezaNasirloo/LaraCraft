@@ -3,6 +3,7 @@
 use App\Http\Requests;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\Category;
 use App\Models\Photo;
 use App\Models\Product\Product;
 use App\Models\Shop;
@@ -89,40 +90,47 @@ class ProductController extends Controller {
         $photos = Photo::whereIn('id', $input['image_ids'])->get()->all();
         $product->photos()->saveMany($photos);
 
+        $category = Category::find($input['category']);
+        $category->products()->save($product);
+
         session()->flash('flash_message', 'Your Item has added.');
 
         return redirect('/shop/' . $this->shop->slug);
 
     }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Display the specified resource.
+     *
+     * @param Product $product
+     * @return Response
+     * @internal param int $id
+     */
 	public function show(Product $product)
 	{
 		return view('product.show', compact('product'));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Product $product
+     * @return Response
+     * @internal param int $id
+     */
 	public function edit(Product $product)
 	{
 		return view('product.edit', compact('product'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param ProductRequest $request
+     * @param Product $product
+     * @return Response
+     * @internal param int $id
+     */
 	public function update(ProductRequest $request, Product $product)
 	{
 		$product->update($request->all());

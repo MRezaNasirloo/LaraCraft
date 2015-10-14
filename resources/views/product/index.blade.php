@@ -10,7 +10,7 @@
                     <div class="col-xs-18 col-sm-4 col-md-3">
                         <div class="product productbox">
                             <div class="imgthumb img-responsive">
-                                <img src={{ $product->photo_product }}>
+                                <img src={{ asset($product->photos()->first()->medium) }}>
                             </div>
                             <div class="caption">
                                 <h5>

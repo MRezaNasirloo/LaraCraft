@@ -5,7 +5,7 @@ use Illuminate\Contracts\Routing\Middleware;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class RedirectIfHasNotShop implements Middleware{
+class RedirectIfHasNotShop {
 
     /**
      * @inheritdoc

@@ -3,8 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class DatabaseSeeder extends Seeder {
-
+class DatabaseSeeder extends Seeder
+{
 
     protected $tables = [
         'users',
@@ -17,24 +17,27 @@ class DatabaseSeeder extends Seeder {
     ];
 
     /**
-	 * Run the database seeds.
-	 *
-	 * @return void
-	 */
-	public function run()
-	{
-		Model::unguard();
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        Model::unguard();
 
+        // $this->call(UserTableSeeder::class);
         $this->cleanDatabase();
 
-		 $this->call('UserTableSeeder');
-		 $this->call('ShopTableSeeder');
-		 $this->call('ProductTableSeeder');
-		 $this->call('OptionTableSeeder');
-		 $this->call('OptionValueTableSeeder');
-		 $this->call('PhotoTableSeeder');
-		 $this->call('CategoryTableSeeder');
-	}
+        $this->call(UserTableSeeder::class);
+        $this->call(ShopTableSeeder::class);
+        $this->call(ProductTableSeeder::class);
+        $this->call(OptionTableSeeder::class);
+        $this->call(OptionValueTableSeeder::class);
+        $this->call(PhotoTableSeeder::class);
+        $this->call(CategoryTableSeeder::class);
+
+        Model::reguard();
+    }
 
     private function cleanDatabase()
     {
@@ -43,5 +46,4 @@ class DatabaseSeeder extends Seeder {
             DB::table($table)->truncate();
         }
     }
-
 }

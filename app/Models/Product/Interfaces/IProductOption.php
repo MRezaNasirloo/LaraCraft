@@ -24,14 +24,18 @@ interface IProductOption {
     /**
      * Adds many OptionValues for an ProductOption
      *
-     * @param array IOptionValue $value
+     * @param $values
+     * @return
+     * @internal param IOptionValue $array $value
      */
     public function addOptionValues($values);
 
     /**
      * Removes an IOptionValue.
      *
-     * @param IOptionValue $optionValue
+     * @param IOptionValue $value
+     * @return
+     * @internal param IOptionValue $optionValue
      */
     public function removeOptionValue(IOptionValue $value);
 

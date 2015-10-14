@@ -4,7 +4,7 @@ use Closure;
 use Illuminate\Contracts\Routing\Middleware;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfHasShop implements Middleware{
+class RedirectIfHasShop {
 
 	/**
 	 * @inheritdoc

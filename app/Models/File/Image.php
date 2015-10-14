@@ -38,8 +38,11 @@ class Image implements IFile {
     /**
      * Makes sure the file with the same name does not exists in the Storage
      *
-     * @param $storePath
+     * @param $todayPath
+     * @param $size
+     * @param $baseName
      * @return string
+     * @internal param $storePath
      */
     private function makeUniquePath($todayPath, $size, $baseName)
     {
