@@ -141,6 +141,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Baum\Providers\BaumServiceProvider::class,
+        Dingo\Api\Provider\LaravelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -201,7 +202,9 @@ return [
         'Form'		=> Illuminate\Html\FormFacade::class,
         'Html'		=> Illuminate\Html\HtmlFacade::class,
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
-        'Image'     => Intervention\Image\Facades\Image::class
+        'Image'     => Intervention\Image\Facades\Image::class,
+        'API'       => Dingo\Api\Facade\API::class,
+        'APIRoute'  => Dingo\Api\Facade\Route::class,
 
     ],
 
