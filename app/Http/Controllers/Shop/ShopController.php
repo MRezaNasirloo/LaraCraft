@@ -71,11 +71,8 @@ class ShopController extends Controller
      */
     public function store(ShopRequest $request)
     {
-        $name = $request->get('name');
-        $slug = str_slug($name);//TODO: Use a package for slugs
-        $request['slug'] = $slug;
         $this->auth->user()->shop()->create($request->all());
-        return redirect('/shop/' . $slug);
+        return redirect('/shop/' . $this->auth->user()->shop->slug);
     }
 
     /**
