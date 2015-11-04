@@ -44,3 +44,17 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+
+/*
+|--------------------------------------------------------------------------
+| Application API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where API routes is defined.
+|
+*/
+
+APIRoute::version('v1', ['namespace' => 'App\API\V1\Http\Controllers'], function () {
+    APIRoute::resource('shops', 'ShopController');
+});
