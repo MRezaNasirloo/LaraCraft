@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call(UserTableSeeder::class);
         $this->cleanDatabase();
 
         $this->call(UserTableSeeder::class);
@@ -35,6 +34,9 @@ class DatabaseSeeder extends Seeder
         $this->call(OptionValueTableSeeder::class);
         $this->call(PhotoTableSeeder::class);
         $this->call(CategoryTableSeeder::class);
+
+        $this->call(ClientsTableSeeder::class);
+
 
         Model::reguard();
     }

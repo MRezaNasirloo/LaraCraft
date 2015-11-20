@@ -3,13 +3,24 @@
 namespace App\API\V1\Http\Controllers;
 
 use App\Models\Shop;
+use Dingo\Api\Facade\API;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Psy\Util\Json;
 
 class ShopController extends Controller
 {
+    /**
+     * ShopController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('api.auth', ['only' => ['edit', 'update']]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -60,7 +71,7 @@ class ShopController extends Controller
      */
     public function edit($id)
     {
-        return "In Construction...";
+        return ['error' => 'In Construction'];
     }
 
     /**
@@ -72,7 +83,7 @@ class ShopController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return "In Construction...";
+        return ['error' => 'In Construction'];
     }
 
     /**

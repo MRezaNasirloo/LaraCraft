@@ -55,6 +55,10 @@ Route::controllers([
 |
 */
 
+Route::post('/oauth/access_token', function() {
+	return Response::json(Authorizer::issueAccessToken());
+});
+
 APIRoute::version('v1', ['namespace' => 'App\API\V1\Http\Controllers'], function () {
-    APIRoute::resource('shops', 'ShopController');
+    APIRoute::resource('shops', 'ShopController');//doesn't work with 'shop' WTF!!!?
 });

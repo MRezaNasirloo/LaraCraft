@@ -11,8 +11,8 @@
         "cviebrock/eloquent-sluggable": "dev-master",
         "intervention/image": "~2.1",
         "baum/baum": "~1.1",
-        "dingo/api": "1.0.*@dev"
-
+        "dingo/api": "1.0.*@dev",
+        "lucadegasperi/oauth2-server-laravel": "5.0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
