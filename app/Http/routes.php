@@ -60,5 +60,6 @@ Route::post('/oauth/access_token', function() {
 });
 
 APIRoute::version('v1', ['namespace' => 'App\API\V1\Http\Controllers'], function () {
-    APIRoute::resource('shops', 'ShopController');//doesn't work with 'shop' WTF!!!?
+    APIRoute::resource('shops', 'ShopController');
+    //doesn't work with 'shop' WTF!!!? UPDATE: it might because of route model binding to shop route
 });

@@ -33,6 +33,7 @@ class Kernel extends HttpKernel
         'shop'          => \App\Http\Middleware\RedirectIfHasShop::class,
         'shop.hasNot'   => \App\Http\Middleware\RedirectIfHasNotShop::class,
         'owner'         => \App\Http\Middleware\Owner::class,
+        'api.owner'     => \App\API\V1\Http\Middleware\Owner::class,
 
         /*
 	    |--------------------------------------------------------------------------

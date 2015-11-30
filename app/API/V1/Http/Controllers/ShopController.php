@@ -3,12 +3,10 @@
 namespace App\API\V1\Http\Controllers;
 
 use App\Models\Shop;
-use Dingo\Api\Facade\API;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Psy\Util\Json;
 
 class ShopController extends Controller
 {
@@ -17,7 +15,12 @@ class ShopController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('api.auth', ['only' => ['edit', 'update']]);
+
+        $this->middleware('oauth');
+        $this->middleware('oauth-client', ['except' => ['edit', 'update']]);
+        $this->middleware('api.owner', ['only' => ['edit', 'update']]);
+//        $this->middleware('oauth-user', ['only' => ['edit', 'update']]);
+
     }
 
 
